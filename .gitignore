@@ -1,0 +1,6 @@
+# logs
+*.log
+.pnpm-debug.log*
+
+# build
+node_modules
