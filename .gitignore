@@ -4,3 +4,7 @@
 
 # build
 node_modules
+
+# environment
+.direnv
+.vscode
