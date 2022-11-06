@@ -1,6 +1,10 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /passes/{pass} {
+      allow read: if request.auth.uid == resource.data.issuer || request.auth.uid == resource.data.holder;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

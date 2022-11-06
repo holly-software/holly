@@ -1,7 +1,7 @@
 import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-	appId: "com.maxniederman.grantpass",
+	appId: "net.pps.grantpass",
 	appName: "Grant Pass",
 	webDir: "dist",
 	bundledWebRuntime: false,

@@ -10,11 +10,16 @@
 		"check": "svelte-check --tsconfig ./tsconfig.json"
 	},
 	"devDependencies": {
+		"@capacitor-firebase/authentication": "^1.2.0",
 		"@capacitor/android": "^4.4.0",
 		"@capacitor/core": "^4.4.0",
 		"@capacitor/ios": "^4.4.0",
+		"@iconify/svelte": "^3.0.0",
 		"@sveltejs/vite-plugin-svelte": "^1.1.0",
 		"@tsconfig/svelte": "^3.0.0",
+		"firebase": "^9.13.0",
+		"open-color": "^1.9.1",
+		"sass": "^1.56.0",
 		"svelte": "^3.52.0",
 		"svelte-check": "^2.9.2",
 		"svelte-preprocess": "^4.10.7",
