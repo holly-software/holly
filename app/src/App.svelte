@@ -13,7 +13,8 @@
 {#if $user}
 	{#if $user.email.endsWith("@student.pps.net")}
 		Student
-	{:else if $user.email.endsWith("@pps.net")}
+	{:else if $user.email.endsWith("@pps.net") || $user.email.endsWith("@gmail.com")}
+		<!-- FIXME: remove gmail testing domain -->
 		<Teacher teacherUid={$user.uid} />
 	{:else}
 		You are not a PPS user. Please sign in using your @pps.net or

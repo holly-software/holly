@@ -10,6 +10,7 @@ import {
 	setPersistence,
 	connectAuthEmulator,
 	onAuthStateChanged,
+	signInWithCredential,
 } from "firebase/auth";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
@@ -25,10 +26,9 @@ const app = initializeApp({
 
 export const auth = getAuth(app);
 
-
 export const user = writable(auth.currentUser);
 onAuthStateChanged(auth, user.set);
-user.subscribe(console.log)
+user.subscribe(console.log);
 
 export const signInWithGoogle = async () => {
 	const provider = new GoogleAuthProvider();
@@ -39,7 +39,7 @@ export const signInWithGoogle = async () => {
 			result.credential?.idToken
 		);
 
-		await signInWithRedirect(auth, credential);
+		await signInWithCredential(auth, credential);
 	} else {
 		await signInWithPopup(auth, provider).then((res) => {
 			setPersistence(auth, browserSessionPersistence);
