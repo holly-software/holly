@@ -1,0 +1,6 @@
+{
+	"devDependencies": {
+		"@capacitor/cli": "^4.4.0",
+		"firebase-tools": "^11.16.0"
+	}
+}
