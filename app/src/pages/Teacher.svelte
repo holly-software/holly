@@ -1,52 +1,36 @@
 <script lang="ts">
 	import Icon from "@iconify/svelte";
-	import {
-		collection,
-		getDocs,
-		onSnapshot,
-		query,
-		where,
-	} from "firebase/firestore";
 	import { onMount } from "svelte";
-	import { db } from "../firebase";
+	import type { Typesaurus } from "typesaurus";
+	import db, { type Pass } from "../database";
 
 	export let teacherUid: string;
 
-	let docs = [];
+	let docs: Typesaurus.Doc<Typesaurus.Model<Pass>, never>[] = [];
 	onMount(async () => {
-		const passQuery = query(
-			collection(db, "passes"),
-			where("issuer", "==", teacherUid)
-		);
-
-		docs = (await getDocs(passQuery)).docs;
-
-		onSnapshot(passQuery, (snapshot) => {
-			docs = snapshot.docs;
-		});
+		db.passes
+			.query(($) => [
+				// $.field("issuer").equal(db.users.ref(db.users.id(teacherUid))),
+				$.field("status").in(["requested", "active"]),
+			])
+			.on((snapshot) => {
+				docs = snapshot;
+				console.log("received snapshot:", docs);
+			});
 	});
-    $: console.log(docs);
 
-	const active = [
-		{ name: "Gay Bowser" },
-		{ name: "Ben Dover" },
-		{ name: "X Æ A-12 Musk" },
-	];
-	const requests = [
-		{ name: "Gay Bowser" },
-		{ name: "Ben Dover" },
-		{ name: "X Æ A-12 Musk" },
-	];
+	$: requests = docs.filter((doc) => doc.data.status === "requested");
+	$: active = docs.filter((doc) => doc.data.status === "active");
 </script>
 
 <main>
 	<div class="heading">
-		<span class="title">Pass Requests</span>
+		<span class="title">Active Passes</span>
 		<span class="count">{active.length}</span>
 	</div>
-	{#each active as { name }}
+	{#each active as pass}
 		<div class="pass">
-			{name}
+			{pass.data.holder_name}
 			<div class="actions">
 				<button class="red">
 					<Icon icon="tabler:x" />
@@ -60,9 +44,9 @@
 		<span class="count">{requests.length}</span>
 	</div>
 
-	{#each requests as { name }}
+	{#each requests as pass}
 		<div class="pass">
-			{name}
+			{pass.data.holder_name}
 			<div class="actions">
 				<button class="green">
 					<Icon icon="tabler:check" />

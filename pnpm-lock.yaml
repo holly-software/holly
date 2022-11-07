@@ -30,6 +30,7 @@ importers:
       svelte-check: ^2.9.2
       svelte-preprocess: ^4.10.7
       tslib: ^2.4.0
+      typesaurus: 10.0.0-alpha.39
       typescript: ^4.6.4
       vite: ^3.2.0
     devDependencies:
@@ -47,6 +48,7 @@ importers:
       svelte-check: 2.9.2_sass@1.56.0+svelte@3.52.0
       svelte-preprocess: 4.10.7_ngwexh7rjq5fmatf3fnjcyc3qm
       tslib: 2.4.1
+      typesaurus: 10.0.0-alpha.39
       typescript: 4.8.4
       vite: 3.2.2_sass@1.56.0
 
@@ -5812,6 +5814,10 @@ packages:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
     dependencies:
       is-typedarray: 1.0.0
+    dev: true
+
+  /typesaurus/10.0.0-alpha.39:
+    resolution: {integrity: sha512-kQzO5m5gl6KmwU29ehZuDeAFtLXik4ZkJHq2si2/e6QdDvsQuZNd50r+0+4RTNxXNkLpGOgLyk4cJ3AP3gNXQQ==}
     dev: true
 
   /typescript/4.8.4:

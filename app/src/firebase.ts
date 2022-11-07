@@ -4,7 +4,6 @@ import { initializeApp } from "firebase/app";
 import {
 	getAuth,
 	GoogleAuthProvider,
-	signInWithRedirect,
 	signInWithPopup,
 	browserSessionPersistence,
 	setPersistence,
@@ -28,7 +27,7 @@ export const auth = getAuth(app);
 
 export const user = writable(auth.currentUser);
 onAuthStateChanged(auth, user.set);
-user.subscribe(console.log);
+user.subscribe((user) => console.log("uid", user?.uid));
 
 export const signInWithGoogle = async () => {
 	const provider = new GoogleAuthProvider();
@@ -51,7 +50,7 @@ export const db = getFirestore(app);
 
 if (import.meta.env.DEV) {
 	connectAuthEmulator(auth, "http://localhost:9099");
-	connectFirestoreEmulator(db, "localhost", 8080);
+	connectFirestoreEmulator(db, "localhost", 9080);
 }
 
 export default app;
