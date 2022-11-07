@@ -2,25 +2,17 @@
 	import Icon from "@iconify/svelte";
 	import { onMount } from "svelte";
 	import type { Typesaurus } from "typesaurus";
-	import db, { type Pass } from "../database";
+	import db, { reactiveQuery, type Pass } from "../database";
 
 	export let teacherUid: string;
 
-	let docs: Typesaurus.Doc<Typesaurus.Model<Pass>, never>[] = [];
-	onMount(async () => {
-		db.passes
-			.query(($) => [
+	let docs = reactiveQuery(db.passes.query(($) => [
 				// $.field("issuer").equal(db.users.ref(db.users.id(teacherUid))),
 				$.field("status").in(["requested", "active"]),
-			])
-			.on((snapshot) => {
-				docs = snapshot;
-				console.log("received snapshot:", docs);
-			});
-	});
+			]), []);
 
-	$: requests = docs.filter((doc) => doc.data.status === "requested");
-	$: active = docs.filter((doc) => doc.data.status === "active");
+	$: requests = $docs.filter((doc) => doc.data.status === "requested");
+	$: active = $docs.filter((doc) => doc.data.status === "active");
 </script>
 
 <main>
