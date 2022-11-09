@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, type Readable } from "svelte/store";
 import { Capacitor } from "@capacitor/core";
 import { initializeApp } from "firebase/app";
 import {
@@ -11,6 +11,7 @@ import {
 	onAuthStateChanged,
 	signInWithCredential,
 } from "firebase/auth";
+import type { TypesaurusCore } from "typesaurus/types/core";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 
@@ -47,6 +48,14 @@ export const signInWithGoogle = async () => {
 };
 
 export const db = getFirestore(app);
+export const reactiveQuery: <Result>(
+	query: TypesaurusCore.SubscriptionPromise<unknown, Result, unknown>,
+	initial?: Result,
+) => Readable<Result | null> = (query, initial) => {
+	const store = writable(initial ?? null);
+	query.on((res, _meta) => store.set(res));
+	return store;
+};
 
 if (import.meta.env.DEV) {
 	connectAuthEmulator(auth, "http://localhost:9099");

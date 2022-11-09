@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Icon from "@iconify/svelte";
-	import { onMount } from "svelte";
-	import type { Typesaurus } from "typesaurus";
-	import db, { reactiveQuery, type Pass } from "../database";
+	import db from "@grant-pass/schema";
+	import { reactiveQuery } from "../firebase";
 
 	export let teacherUid: string;
 
