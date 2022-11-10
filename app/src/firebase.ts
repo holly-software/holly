@@ -14,6 +14,8 @@ import {
 import type { TypesaurusCore } from "typesaurus/types/core";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
+import { schema } from "typesaurus";
+import getSchema from "@grant-pass/schema";
 
 const app = initializeApp({
 	apiKey: "AIzaSyD22YgNtuN4VA0JJn2nnS0Su0Ovy5hT8rA",
@@ -47,10 +49,13 @@ export const signInWithGoogle = async () => {
 	}
 };
 
-export const db = getFirestore(app);
+export const untypedDb = getFirestore(app);
+
+export const db = schema(getSchema);
+
 export const reactiveQuery: <Result>(
 	query: TypesaurusCore.SubscriptionPromise<unknown, Result, unknown>,
-	initial?: Result,
+	initial?: Result
 ) => Readable<Result | null> = (query, initial) => {
 	const store = writable(initial ?? null);
 	query.on((res, _meta) => store.set(res));
@@ -59,7 +64,7 @@ export const reactiveQuery: <Result>(
 
 if (import.meta.env.DEV) {
 	connectAuthEmulator(auth, "http://localhost:9099");
-	connectFirestoreEmulator(db, "localhost", 9080);
+	connectFirestoreEmulator(untypedDb, "localhost", 9080);
 }
 
 export default app;

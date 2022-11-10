@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Icon from "@iconify/svelte";
-	// TODO: figure out why UMD import doesn't work
-	import db from "@grant-pass/schema/src/index";
-	import { reactiveQuery } from "../firebase";
+	import { db, reactiveQuery } from "../firebase";
 
 	export let teacherUid: string;
 

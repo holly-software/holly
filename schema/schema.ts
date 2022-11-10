@@ -1,4 +1,5 @@
-import { schema, type Typesaurus } from "typesaurus";
+import { schema, Typesaurus } from "typesaurus";
+import type { TypesaurusCore } from "typesaurus/types/core";
 
 export type User = {
 	name: string;
@@ -50,7 +51,9 @@ export type Pass =
 			revoked_at: Date;
 	  };
 
-export default schema(($) => ({
+export default (
+	$: TypesaurusCore.SchemaHelpers
+) => ({
 	users: $.collection<User>(),
 	passes: $.collection<Pass>(),
-}));
+});

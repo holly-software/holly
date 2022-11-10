@@ -8,11 +8,13 @@ importers:
       firebase-tools: ^11.16.0
       prettier: ^2.7.1
       prettier-plugin-svelte: ^2.8.0
+      typescript: ^4.6.4
     devDependencies:
       '@capacitor/cli': 4.4.0
       firebase-tools: 11.16.0
       prettier: 2.7.1
       prettier-plugin-svelte: 2.8.0_prettier@2.7.1
+      typescript: 4.8.4
 
   app:
     specifiers:
@@ -59,22 +61,21 @@ importers:
       '@grant-pass/schema': workspace:^1.0.0
       firebase-admin: ^11.2.0
       firebase-functions: ^4.0.2
+      typesaurus: 10.0.0-alpha.39
       typescript: ^4.6.4
     dependencies:
       '@grant-pass/schema': link:../schema
       firebase-admin: 11.2.0
       firebase-functions: 4.0.2_firebase-admin@11.2.0
+      typesaurus: 10.0.0-alpha.39
     devDependencies:
       typescript: 4.8.4
 
   schema:
     specifiers:
       typesaurus: 10.0.0-alpha.39
-      typescript: ^4.6.4
     dependencies:
       typesaurus: 10.0.0-alpha.39
-    devDependencies:
-      typescript: 4.8.4
 
 packages:
 
@@ -1303,10 +1304,8 @@ packages:
     dev: true
     optional: true
 
-  /ajv-formats/2.1.1_ajv@8.11.0:
+  /ajv-formats/2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
-    peerDependencies:
-      ajv: ^8.0.0
     peerDependenciesMeta:
       ajv:
         optional: true
@@ -2642,7 +2641,7 @@ packages:
     dependencies:
       '@apidevtools/json-schema-ref-parser': 9.0.9
       ajv: 8.11.0
-      ajv-formats: 2.1.1_ajv@8.11.0
+      ajv-formats: 2.1.1
       body-parser: 1.20.1
       content-type: 1.0.4
       deep-freeze: 0.0.1

@@ -1,6 +1,9 @@
 import { initializeApp } from "firebase-admin/app";
 import * as functions from "firebase-functions";
-import db from "@grant-pass/schema";
+import { schema } from "typesaurus";
+import getSchema from "@grant-pass/schema";
+
+const db = schema(getSchema);
 
 initializeApp();
 
