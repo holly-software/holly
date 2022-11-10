@@ -2,9 +2,16 @@
   "name": "@grant-pass/schema",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "dependencies": {
     "typesaurus": "10.0.0-alpha.39"
   },
-  "type": "module"
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
 }

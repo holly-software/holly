@@ -1,14 +1,18 @@
 <script lang="ts">
 	import Icon from "@iconify/svelte";
-	import db from "@grant-pass/schema";
+	// TODO: figure out why UMD import doesn't work
+	import db from "@grant-pass/schema/src/index";
 	import { reactiveQuery } from "../firebase";
 
 	export let teacherUid: string;
 
-	let docs = reactiveQuery(db.passes.query(($) => [
-				// $.field("issuer").equal(db.users.ref(db.users.id(teacherUid))),
-				$.field("status").in(["requested", "active"]),
-			]), []);
+	let docs = reactiveQuery(
+		db.passes.query(($) => [
+			$.field("issuer").equal(db.users.ref(db.users.id(teacherUid))),
+			$.field("status").in(["requested", "active"]),
+		]),
+		[]
+	);
 
 	$: requests = $docs.filter((doc) => doc.data.status === "requested");
 	$: active = $docs.filter((doc) => doc.data.status === "active");
