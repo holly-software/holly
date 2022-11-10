@@ -1,6 +1,10 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /users/{user} {
+      allow read: if request.auth.uid == user;
+    }
+
     match /passes/{pass} {
       // FIXME: only allow properly authorized users to read
       // allow read: if /databases/(default)/documents/users/$(request.auth.uid)

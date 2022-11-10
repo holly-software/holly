@@ -13,7 +13,7 @@ import {
 } from "firebase/auth";
 import type { TypesaurusCore } from "typesaurus/types/core";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
-import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
+import { connectFirestoreEmulator, enableMultiTabIndexedDbPersistence, getFirestore } from "firebase/firestore";
 import { schema } from "typesaurus";
 import getSchema from "@grant-pass/schema";
 
