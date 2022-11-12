@@ -4,6 +4,7 @@
 	import { get } from "svelte/store";
 	import { auth, db, reactiveQuery, signInWithGoogle, user } from "./firebase";
 	import Teacher from "./pages/Teacher.svelte";
+	import Student from "./pages/student/Student.svelte";
 
 	enum State {
 		Loading,
@@ -38,9 +39,9 @@
 {#if state === State.Loading}
 	Loading
 {:else if state === State.Student}
-	Student
+	<Student />
 {:else if state === State.Teacher}
-	<Teacher teacherUid={$user.uid} />
+	<Teacher />
 {:else if state === State.InvalidUser}
 	You are not a PPS user. Please sign in using your @pps.net or @student.pps.net
 	Google account.
