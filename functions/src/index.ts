@@ -1,9 +1,12 @@
+import type { Pass, User } from "@grant-pass/schema";
 import { initializeApp } from "firebase-admin/app";
 import * as functions from "firebase-functions";
 import { schema } from "typesaurus";
-import getSchema from "@grant-pass/schema";
 
-const db = schema(getSchema);
+const db = schema(($) => ({
+	users: $.collection<User>(),
+	passes: $.collection<Pass>(),
+}));
 
 initializeApp();
 
