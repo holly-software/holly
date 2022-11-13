@@ -62,6 +62,7 @@
 					{ value: "Water", label: "Water" },
 					{ value: "Counselor", label: "Counselor" },
 					{ value: "Quiet Space", label: "Quiet Space" },
+					{ value: "Office", label: "Office"}
 				]}
 				allowCustom={true}
 			/>
