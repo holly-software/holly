@@ -6,10 +6,11 @@ service cloud.firestore {
     }
 
     match /passes/{pass} {
-      // FIXME: only allow properly authorized users to read
-      // allow read: if /databases/(default)/documents/users/$(request.auth.uid)
-                    // in [resource.data.issuer, resource.data.get("holder", null)];
-      allow read: if request.auth.uid != null;
+      allow read: if request.auth.uid
+                    in [resource.data.issuer, resource.data.get("holder", null)];
+      
+      // FIXME: do proper validation
+      allow write: if true;
     }
 
     match /{document=**} {

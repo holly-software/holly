@@ -1,20 +1,56 @@
 <script lang="ts">
+	import type { User } from "@grant-pass/schema";
+	import { onMount } from "svelte";
+	import { get } from "svelte/store";
+	import type { Typesaurus } from "typesaurus";
 	import Page from "../../components/Page.svelte";
-	import SelectInput from "../../components/SelectInput.svelte";
+	import SelectInput, {
+		type Option,
+	} from "../../components/SelectInput.svelte";
+	import { db, user } from "../../firebase";
+
+	let teacher: Option<Typesaurus.Id<"users">> | null = null;
+	let reason: Option<string> | null = null;
+
+	let teachers: Typesaurus.Doc<User, "users">[] = [];
+	onMount(async () => {
+		teachers = await db.users.query(($) => [$.field("role_teacher").equal(true)]);
+	});
+
+	async function submit() {
+		if (teacher === null || reason === null) {
+			return;
+		}
+
+		db.passes.add(($) => ({
+			status: "requested",
+
+			holder: db.users.id(get(user).uid),
+			// FIXME: this should get the name from the user's profile, not their Google account
+			holder_name: get(user).displayName,
+			issuer: teacher.value,
+
+			reason: reason.value,
+
+			requested_at: $.serverDate(),
+		}));
+	}
+	$: canSubmit = teacher !== null && reason !== null;
+
+	$: console.log(teacher?.value);
 </script>
 
 <Page heading="Request Pass">
-	<form on:submit|preventDefault>
+	<form on:submit|preventDefault={submit}>
 		<div class="form-item">
 			<label for="teacher">Teacher</label>
 			<SelectInput
 				id="teacher"
-				options={[
-					{ value: "A", label: "A" },
-					{ value: "B", label: "B" },
-					{ value: "C", label: "C" },
-					{ value: "D", label: "D" },
-				]}
+				bind:selected={teacher}
+				options={teachers.map((teacher) => ({
+					label: teacher.data.name,
+					value: teacher.ref.id,
+				}))}
 			/>
 		</div>
 
@@ -22,6 +58,7 @@
 			<label for="reason">Reason</label>
 			<SelectInput
 				id="reason"
+				bind:selected={reason}
 				options={[
 					{ value: "Bathroom", label: "Bathroom" },
 					{ value: "Water", label: "Water" },
@@ -35,7 +72,7 @@
 		<div class="spacer" />
 
 		<div class="form-item">
-			<button type="submit">Submit</button>
+			<button type="submit" class:can-submit={canSubmit}>Submit</button>
 		</div>
 	</form>
 </Page>
@@ -71,13 +108,18 @@
 
 			cursor: pointer;
 
-			border-radius: 8px;
-
-			color: var(--oc-gray-0);
-			background-color: var(--oc-blue-6);
-
 			font-size: 1.15em;
 			font-weight: 800;
+
+			border: 1px solid var(--oc-red-5);
+			border-radius: 8px;
+			background-color: var(--oc-gray-3);
+
+			&.can-submit {
+				border: none;
+				color: var(--oc-gray-0);
+				background-color: var(--oc-blue-6);
+			}
 		}
 	}
 </style>

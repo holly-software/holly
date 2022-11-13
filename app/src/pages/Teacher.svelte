@@ -6,7 +6,7 @@
 
 	let docs = reactiveQuery(
 		db.passes.query(($) => [
-			$.field("issuer").equal(db.users.ref(db.users.id(get(user).uid))),
+			$.field("issuer").equal(db.users.id(get(user).uid)),
 			$.field("status").in(["requested", "active"]),
 		]),
 		[]

@@ -3,7 +3,3 @@
 </script>
 
 <RequestPass />
-
-<style lang="scss">
-
-</style>
