@@ -1,17 +1,35 @@
 <script lang="ts">
 	import Page from "../../components/Page.svelte";
+	import SelectInput from "../../components/SelectInput.svelte";
 </script>
 
 <Page heading="Request Pass">
 	<form on:submit|preventDefault>
 		<div class="form-item">
 			<label for="teacher">Teacher</label>
-			<input type="text" id="teacher" />
+			<SelectInput
+				id="teacher"
+				options={[
+					{ value: "A", label: "A" },
+					{ value: "B", label: "B" },
+					{ value: "C", label: "C" },
+					{ value: "D", label: "D" },
+				]}
+			/>
 		</div>
 
 		<div class="form-item">
 			<label for="reason">Reason</label>
-			<input type="text" id="reason" />
+			<SelectInput
+				id="reason"
+				options={[
+					{ value: "Bathroom", label: "Bathroom" },
+					{ value: "Water", label: "Water" },
+					{ value: "Counselor", label: "Counselor" },
+					{ value: "Quiet Space", label: "Quiet Space" },
+				]}
+				allowCustom={true}
+			/>
 		</div>
 
 		<div class="spacer" />
@@ -42,24 +60,9 @@
 				margin: 4px 0;
 			}
 
-			input, button {
+			:global(input),
+			button {
 				width: 100%;
-			}
-		}
-
-		input {
-			padding: 8px 12px;
-
-			border: 1px solid var(--oc-gray-5);
-			border-radius: 8px;
-			background-color: var(--oc-gray-1);
-
-			&:focus,
-			&:hover {
-				outline: none;
-
-				border-color: var(--oc-blue-6);
-				background-color: var(--oc-gray-2);
 			}
 		}
 
