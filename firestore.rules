@@ -7,7 +7,7 @@ service cloud.firestore {
 
     match /passes/{pass} {
       allow read: if request.auth.uid
-                    in [resource.data.issuer, resource.data.get("holder", null)];
+                    in [resource.data.issuer, resource.data.holder];
       
       // FIXME: do proper validation
       allow write: if true;

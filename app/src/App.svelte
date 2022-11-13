@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { identity } from "svelte/internal";
-	import { get } from "svelte/store";
 	import { auth, db, reactiveQuery, signInWithGoogle, user } from "./firebase";
 	import Teacher from "./pages/Teacher.svelte";
 	import Student from "./pages/student/Student.svelte";

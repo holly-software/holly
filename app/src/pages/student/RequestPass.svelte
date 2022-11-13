@@ -36,8 +36,6 @@
 		}));
 	}
 	$: canSubmit = teacher !== null && reason !== null;
-
-	$: console.log(teacher?.value);
 </script>
 
 <Page heading="Request Pass">

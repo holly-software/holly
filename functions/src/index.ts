@@ -3,14 +3,14 @@ import { initializeApp } from "firebase-admin/app";
 import * as functions from "firebase-functions";
 import { schema } from "typesaurus";
 
+initializeApp();
+
 const db = schema(($) => ({
 	users: $.collection<User>(),
 	passes: $.collection<Pass>(),
 }));
 
-initializeApp();
-
-export const initializeUserDocument = functions.auth
+export const createUserDocument = functions.auth
 	.user()
 	.onCreate(async (user, _ctx) => {
 		if (!user.email || !user.emailVerified) {
