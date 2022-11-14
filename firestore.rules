@@ -7,14 +7,15 @@ service cloud.firestore {
 
     match /passes/{pass} {
       allow read: if request.auth.uid
-                    in [resource.data.issuer, resource.data.holder];
+                    in [resource.data.issuer || resource.data.holder];
       
       // FIXME: do proper validation
       allow write: if true;
     }
 
     match /{document=**} {
-      allow read, write: if false;
+      // FIXME: do proper validation
+      allow read, write;
     }
   }
 }

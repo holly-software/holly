@@ -12,8 +12,16 @@
 		[]
 	);
 
-	$: requests = $docs.filter((doc) => doc.data.status === "requested");
-	$: active = $docs.filter((doc) => doc.data.status === "active");
+	let requests;
+	let active;
+
+	docs.subscribe((docs) => {
+		console.log(docs);
+		
+		requests = docs.filter((doc) => doc.data.status === "requested");
+		active = docs.filter((doc) => doc.data.status === "active");
+	});
+
 </script>
 
 <Page>
