@@ -3,8 +3,11 @@
 	import { db, reactiveQuery, user } from "../firebase";
 	import { get } from "svelte/store";
 	import Page from "../components/Page.svelte";
+	import type { Typesaurus } from "typesaurus";
+	import type { Pass } from "@grant-pass/schema";
+	import { slide } from "svelte/transition";
 
-	let docs = reactiveQuery(
+	let passes = reactiveQuery(
 		db.passes.query(($) => [
 			$.field("issuer").equal(db.users.id(get(user).uid)),
 			$.field("status").in(["requested", "active"]),
@@ -12,16 +15,31 @@
 		[]
 	);
 
-	let requests;
-	let active;
+	$: requests = $passes.filter((doc) => doc.data.status === "requested");
+	$: active = $passes.filter((doc) => doc.data.status === "active");
 
-	docs.subscribe((docs) => {
-		console.log(docs);
-		
-		requests = docs.filter((doc) => doc.data.status === "requested");
-		active = docs.filter((doc) => doc.data.status === "active");
-	});
+	async function approve(pass: Typesaurus.Doc<Pass, never>) {
+		await pass.update(($) => ({
+			status: "active",
+			approved_at: $.serverDate(),
+		}));
+	}
 
+	async function cancel(pass: Typesaurus.Doc<Pass, never>) {
+		await pass.update(($) => ({
+			status: "canceled",
+			canceled_by: "issuer",
+			canceled_at: $.serverDate(),
+		}));
+	}
+
+	async function revoke(pass: Typesaurus.Doc<Pass, never>) {
+		await pass.update(($) => ({
+			status: "revoked",
+			revoked_by: "issuer",
+			revoked_at: $.serverDate(),
+		}));
+	}
 </script>
 
 <Page>
@@ -31,10 +49,10 @@
 			<span class="count">{active.length}</span>
 		</div>
 		{#each active as pass}
-			<div class="pass">
+			<div class="pass" transition:slide>
 				{pass.data.holder_name}
 				<div class="actions">
-					<button class="red">
+					<button class="red" on:click={() => revoke(pass)}>
 						<Icon icon="tabler:x" />
 					</button>
 				</div>
@@ -47,13 +65,13 @@
 		</div>
 
 		{#each requests as pass}
-			<div class="pass">
+			<div class="pass" transition:slide>
 				{pass.data.holder_name}
 				<div class="actions">
-					<button class="green">
+					<button class="green" on:click={() => approve(pass)}>
 						<Icon icon="tabler:check" />
 					</button>
-					<button class="red">
+					<button class="red" on:click={() => cancel(pass)}>
 						<Icon icon="tabler:x" />
 					</button>
 				</div>

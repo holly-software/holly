@@ -24,6 +24,20 @@ export type Pass =
 			requested_at: Typesaurus.ServerDate;
 	  }
 	| {
+			status: "canceled";
+
+			holder: Typesaurus.Id<"users">;
+			holder_name: string;
+			issuer: Typesaurus.Id<"users">;
+
+			reason: string;
+
+			canceled_by: "issuer" | "holder";
+
+			requested_at: Typesaurus.ServerDate;
+			canceled_at: Typesaurus.ServerDate;
+	  }
+	| {
 			status: "active";
 			holder: Typesaurus.Id<"users">;
 			holder_name: string;
@@ -50,9 +64,7 @@ export type Pass =
 			revoked_at: Typesaurus.ServerDate;
 	  };
 
-export default (
-	$: TypesaurusCore.SchemaHelpers
-) => ({
+export default ($: TypesaurusCore.SchemaHelpers) => ({
 	users: $.collection<User>(),
 	passes: $.collection<Pass>(),
 });

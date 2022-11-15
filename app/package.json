@@ -23,6 +23,7 @@
 		"sass": "^1.56.0",
 		"svelte": "^3.52.0",
 		"svelte-check": "^2.9.2",
+		"svelte-loading-spinners": "^0.3.4",
 		"svelte-preprocess": "^4.10.7",
 		"tslib": "^2.4.0",
 		"typesaurus": "10.0.0-alpha.39",

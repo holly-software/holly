@@ -31,6 +31,7 @@ importers:
       sass: ^1.56.0
       svelte: ^3.52.0
       svelte-check: ^2.9.2
+      svelte-loading-spinners: ^0.3.4
       svelte-preprocess: ^4.10.7
       tslib: ^2.4.0
       typesaurus: 10.0.0-alpha.39
@@ -50,6 +51,7 @@ importers:
       sass: 1.56.0
       svelte: 3.52.0
       svelte-check: 2.9.2_sass@1.56.0+svelte@3.52.0
+      svelte-loading-spinners: 0.3.4
       svelte-preprocess: 4.10.7_ngwexh7rjq5fmatf3fnjcyc3qm
       tslib: 2.4.1
       typesaurus: 10.0.0-alpha.39
@@ -5705,6 +5707,10 @@ packages:
       svelte: '>=3.19.0'
     dependencies:
       svelte: 3.52.0
+    dev: true
+
+  /svelte-loading-spinners/0.3.4:
+    resolution: {integrity: sha512-vKaW71QMCBcTNijAGc0mUl8k3DQ66iYmp6MB8BMGCXyWk82bTrcLy8FOnSm9fE+8q6TwzD6PLUoYFHt0II93Xw==}
     dev: true
 
   /svelte-preprocess/4.10.7_ngwexh7rjq5fmatf3fnjcyc3qm:
