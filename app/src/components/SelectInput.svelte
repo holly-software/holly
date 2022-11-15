@@ -53,7 +53,7 @@
 		</div>
 	{/each}
 
-	{#if applicableOptions.length === 0}
+	{#if !allowCustom && applicableOptions.length === 0}
 		<div class="no-options">¯\_(ツ)_/¯</div>
 	{/if}
 
