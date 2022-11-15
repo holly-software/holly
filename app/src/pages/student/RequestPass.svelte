@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { User } from "@grant-pass/schema";
+	import { sendPasswordResetEmail } from "firebase/auth";
 	import { onMount } from "svelte";
 	import { get } from "svelte/store";
 	import type { Typesaurus } from "typesaurus";

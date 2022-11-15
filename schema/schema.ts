@@ -24,7 +24,7 @@ export type Pass =
 			requested_at: Typesaurus.ServerDate;
 	  }
 	| {
-			status: "canceled";
+			status: "aborted";
 
 			holder: Typesaurus.Id<"users">;
 			holder_name: string;
@@ -32,13 +32,13 @@ export type Pass =
 
 			reason: string;
 
-			canceled_by: "issuer" | "holder";
+			aborted_by: "issuer" | "holder";
 
 			requested_at: Typesaurus.ServerDate;
-			canceled_at: Typesaurus.ServerDate;
+			aborted_at: Typesaurus.ServerDate;
 	  }
 	| {
-			status: "active";
+			status: "issued";
 			holder: Typesaurus.Id<"users">;
 			holder_name: string;
 			issuer: Typesaurus.Id<"users">;

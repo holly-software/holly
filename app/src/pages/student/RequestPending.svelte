@@ -4,13 +4,13 @@
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@grant-pass/schema";
 
-	export let pass: Typesaurus.Doc<Pass, "passes">;
+	export let pass: Typesaurus.Doc<Pass, never>;
 
 	async function cancel() {
 		await pass.update(($) => ({
-			status: "canceled",
-			canceled_by: "holder",
-			canceled_at: $.serverDate(),
+			status: "aborted",
+			aborted_by: "holder",
+			aborted_at: $.serverDate(),
 		}));
 	}
 </script>

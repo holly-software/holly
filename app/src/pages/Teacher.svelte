@@ -10,26 +10,26 @@
 	let passes = reactiveQuery(
 		db.passes.query(($) => [
 			$.field("issuer").equal(db.users.id(get(user).uid)),
-			$.field("status").in(["requested", "active"]),
+			$.field("status").in(["requested", "issued"]),
 		]),
 		[]
 	);
 
 	$: requests = $passes.filter((doc) => doc.data.status === "requested");
-	$: active = $passes.filter((doc) => doc.data.status === "active");
+	$: issued = $passes.filter((doc) => doc.data.status === "issued");
 
-	async function approve(pass: Typesaurus.Doc<Pass, never>) {
+	async function issue(pass: Typesaurus.Doc<Pass, never>) {
 		await pass.update(($) => ({
-			status: "active",
-			approved_at: $.serverDate(),
+			status: "issued",
+			issued_at: $.serverDate(),
 		}));
 	}
 
-	async function cancel(pass: Typesaurus.Doc<Pass, never>) {
+	async function abort(pass: Typesaurus.Doc<Pass, never>) {
 		await pass.update(($) => ({
-			status: "canceled",
-			canceled_by: "issuer",
-			canceled_at: $.serverDate(),
+			status: "aborted",
+			aborted_by: "issuer",
+			aborted_at: $.serverDate(),
 		}));
 	}
 
@@ -46,9 +46,9 @@
 	<main>
 		<div class="heading">
 			<span class="title">Active Passes</span>
-			<span class="count">{active.length}</span>
+			<span class="count">{issued.length}</span>
 		</div>
-		{#each active as pass}
+		{#each issued as pass}
 			<div class="pass" transition:slide>
 				{pass.data.holder_name}
 				<div class="actions">
@@ -68,10 +68,10 @@
 			<div class="pass" transition:slide>
 				{pass.data.holder_name}
 				<div class="actions">
-					<button class="green" on:click={() => approve(pass)}>
+					<button class="green" on:click={() => issue(pass)}>
 						<Icon icon="tabler:check" />
 					</button>
-					<button class="red" on:click={() => cancel(pass)}>
+					<button class="red" on:click={() => abort(pass)}>
 						<Icon icon="tabler:x" />
 					</button>
 				</div>
