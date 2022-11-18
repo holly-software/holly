@@ -18,10 +18,21 @@
 	function formatTwoDigits(n: number): string {
 		return Math.floor(n).toString().padStart(2, "0");
 	}
+
+	async function revoke(pass: Typesaurus.Doc<Pass, never>) {
+		await pass.update(($) => ({
+			status: "revoked",
+			revoked_by: "issuer",
+			revoked_at: $.serverDate(),
+		}));
+	}
 </script>
 
 <Page>
 	<div class="wrapper">
+		<div class="cancel">
+			<button on:click={() => revoke(pass)}>End</button>
+		</div>
 		<div class="timer">
 			{`${formatTwoDigits(elapsedSeconds / 60)}:${formatTwoDigits(
 				elapsedSeconds % 60
@@ -55,5 +66,15 @@
 		background-color: var(--oc-gray-2);
 
 		padding: 16px;
+	}
+
+	button {
+		padding: 8px 24px;
+
+		border-radius: 4px;
+		cursor: pointer;
+
+		color: white;
+		background-color: var(--oc-red-5);
 	}
 </style>
