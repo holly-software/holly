@@ -58,6 +58,10 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="footnotes">
+		<p>This pass will run until teacher ends it or the period is over.</p>
+	</div>
 </Page>
 
 <style lang="scss">
@@ -93,6 +97,23 @@
 		&-label {
 			font-size: 0.8em;
 			font-weight: 800;
+			color: var(--oc-gray-6);
+		}
+	}
+
+	.footnotes {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+
+		padding: 24px 12px;
+
+		text-align: center;
+
+		p {
+			font-style: italic;
+			font-size: 0.75em;
 			color: var(--oc-gray-6);
 		}
 	}
