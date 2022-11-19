@@ -50,6 +50,8 @@ jobs:
           path: app/dist
   
   publish_web:
+    name: Publish to Cloudflare Pages
+
     runs-on: ubuntu-latest
     needs: [build_web]
     steps:
