@@ -1,5 +1,9 @@
 on:
   push:
+    paths:
+      - "functions/**"
+      - "schema/**"
+      - "firebase.json"
 
 jobs:
   build_and_deploy:
@@ -26,7 +30,7 @@ jobs:
         id: pnpm-cache
         shell: bash
         run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+          echo "::set-output name=STORE_PATH::$(pnpm store path)"
 
       - uses: actions/cache@v3
         name: Setup | Cache PNPM Store
