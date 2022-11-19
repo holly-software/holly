@@ -13,8 +13,6 @@
 		[]
 	);
 	$: pass = $passes ? $passes[0] : null;
-
-	$: console.log($passes);
 </script>
 
 {#if pass}
