@@ -14,7 +14,7 @@
 
 	user.subscribe(async (user) => {
 		if (user === null) {
-			await signInWithGoogle("none");
+			await signInWithGoogle("consent");
 		}
 	});
 
