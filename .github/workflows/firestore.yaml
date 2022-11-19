@@ -1,0 +1,26 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "firebase.json"
+      - "firestore.rules"
+      - "firestore.indexes.json"
+
+jobs:
+  deploy:
+    name: Deploy
+    
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Deploy | Deploy Functions
+        uses: w9jds/firebase-action@v11.16.0
+        with:
+          args: deploy --only firestore
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
