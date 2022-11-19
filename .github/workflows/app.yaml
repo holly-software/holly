@@ -129,7 +129,7 @@ jobs:
 
       - name: Build | Assemble Debug
         run: ./gradlew assembleDebug
-        working-directory: app
+        working-directory: app/android
 
       - name: Upload | Debug Build
         uses: actions/upload-artifact@v3
@@ -139,7 +139,7 @@ jobs:
 
       - name: Build | Assemble Release
         run: ./gradlew assemble
-        working-directory: app
+        working-directory: app/android
 
       - name: Upload | Unsigned Release Build
         uses: actions/upload-artifact@v3
