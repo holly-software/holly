@@ -1,3 +1,5 @@
+name: Firestore
+
 on:
   push:
     branches:
