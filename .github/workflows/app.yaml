@@ -72,3 +72,77 @@ jobs:
           projectName: grant-pass
           directory: app/dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+  
+  build_android:
+    name: Build Android App
+    needs: [build_web]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup | Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Setup | Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        name: Setup | Install PNPM
+        id: pnpm-install
+        with:
+          version: 7
+
+      - name: Setup | Locate PNPM Store
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "::set-output name=STORE_PATH::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup | Cache PNPM Store
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Setup | Install Dependencies
+        run: pnpm install
+
+      - name: Setup | Download Web Distribution
+        uses: actions/download-artifact@v2
+        with:
+          name: web
+          path: app/dist
+
+      - name: Build | Capacitor Sync
+        run: npx cap sync android
+        working-directory: app
+
+      - name: Build | Assemble Debug
+        run: ./gradlew assembleDebug
+        working-directory: app
+
+      - name: Upload | Debug Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-debug
+          path: app/android/app/build/outputs/apk/debug
+
+      - name: Build | Assemble Release
+        run: ./gradlew assemble
+        working-directory: app
+
+      - name: Upload | Unsigned Release Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-release-unsigned
+          path: app/android/app/build/outputs/apk/release
