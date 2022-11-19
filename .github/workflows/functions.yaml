@@ -53,6 +53,7 @@ jobs:
         run: pnpx firebase-pnpm-workspaces --filter functions
         
       - name: Deploy | Deploy Functions
+        if: ${{ github.ref_name == 'main' }}
         uses: w9jds/firebase-action@v11.16.0
         with:
           args: deploy --only functions
