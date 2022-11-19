@@ -48,7 +48,7 @@ jobs:
         with:
           name: web
           path: app/dist
-  
+
   publish_web:
     name: Publish to Cloudflare Pages
 
@@ -63,7 +63,7 @@ jobs:
         with:
           name: web
           path: app/dist
-      
+
       - name: Publish | Cloudflare Pages
         uses: cloudflare/pages-action@1
         with:
@@ -72,17 +72,21 @@ jobs:
           projectName: grant-pass
           directory: app/dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-  
+
   build_android:
     name: Build Android App
     needs: [build_web]
+
+    strategy:
+      matrix:
+        build-type: [debug, release]
 
     runs-on: ubuntu-latest
 
     steps:
       - name: Setup | Checkout
         uses: actions/checkout@v3
-      
+
       - name: Setup | Install Java
         uses: actions/setup-java@v3
         with:
@@ -127,22 +131,22 @@ jobs:
         run: npx cap sync android
         working-directory: app
 
-      - name: Build | Assemble Debug
-        run: ./gradlew assembleDebug
+      - name: Build | Assemble APK
+        run: ./gradlew assemble${{ matrix.build-type }}
         working-directory: app/android
 
-      - name: Upload | Debug Build
+      - name: Upload | APK
         uses: actions/upload-artifact@v3
         with:
-          name: android-debug
-          path: app/android/app/build/outputs/apk/debug
+          name: android-apk-${{ matrix.build-type }}
+          path: app/android/app/build/outputs/apk/${{ matrix.build-type }}
 
-      - name: Build | Assemble Release
-        run: ./gradlew assemble
+      - name: Build | Bundle
+        run: ./gradlew bundle${{ matrix.build-type }}
         working-directory: app/android
 
-      - name: Upload | Unsigned Release Build
+      - name: Upload | Bundle
         uses: actions/upload-artifact@v3
         with:
-          name: android-release-unsigned
-          path: app/android/app/build/outputs/apk/release
+          name: android-bundle-${{ matrix.build-type }}
+          path: app/android/app/build/outputs/bundle/${{ matrix.build-type }}
