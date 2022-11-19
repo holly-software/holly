@@ -59,7 +59,7 @@
 	</div>
 
 	<div class="footnotes">
-		<p>This pass will run until teacher ends it or the period is over.</p>
+		<p>This pass will run until the teacher ends it or the period is over.</p>
 	</div>
 </Page>
 
