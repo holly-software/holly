@@ -7,7 +7,9 @@
 
 	export let pass: Typesaurus.Doc<Extract<Pass, { status: "issued" }>, never>;
 
+	// @ts-ignore
 	let holder = reactiveQuery(db.users.get(pass.data.holder));
+	// @ts-ignore
 	let issuer = reactiveQuery(db.users.get(pass.data.issuer));
 
 	let elapsedSeconds: number = 0;
