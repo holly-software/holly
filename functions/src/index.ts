@@ -25,3 +25,9 @@ export const createUserDocument = functions.auth
 			role_student: user.email.endsWith("@student.pps.net"),
 		});
 	});
+
+export const deleteUserDocument = functions.auth
+	.user()
+	.onDelete(async (user, _ctx) => {
+		await db.users.remove(db.users.id(user.uid));
+	});
