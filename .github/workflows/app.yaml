@@ -6,6 +6,7 @@ on:
     paths:
       - "app/**"
       - "schema/**"
+      - ".github/workflows/app.yaml"
 
 jobs:
   build_web:

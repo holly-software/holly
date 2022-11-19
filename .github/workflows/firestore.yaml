@@ -9,6 +9,7 @@ on:
       - "firebase.json"
       - "firestore.rules"
       - "firestore.indexes.json"
+      - ".github/workflows/firestore.yaml"
 
 jobs:
   deploy:
