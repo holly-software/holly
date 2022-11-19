@@ -1,0 +1,61 @@
+on:
+  push:
+
+jobs:
+  build_and_deploy:
+    name: Build and Deploy
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        name: Setup | Install PNPM
+        id: pnpm-install
+        with:
+          version: 7
+
+      - name: Setup | Locate PNPM Store
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "::set-output name=STORE_PATH::$(pnpm store path)"
+
+      - uses: actions/cache@v3
+        name: Setup | Cache PNPM Store
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Setup | Install Dependencies
+        run: pnpm install
+
+      - name: Build | Build
+        run: pnpm run build
+        working-directory: functions
+
+      - name: Upload | Functions Distribution
+        uses: actions/upload-artifact@v3
+        with:
+          name: functions
+          path: functions/dist
+      
+      - name: Setup | Prepare Workspace Dependencies
+        run: pnpx firebase-pnpm-workspaces --filter functions
+        
+      - name: Deploy | Deploy Functions
+        uses: w9jds/firebase-action@v11.16.0
+        with:
+          args: deploy --only functions
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
