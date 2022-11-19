@@ -63,8 +63,3 @@ export type Pass =
 			issued_at: Typesaurus.ServerDate;
 			revoked_at: Typesaurus.ServerDate;
 	  };
-
-export default ($: TypesaurusCore.SchemaHelpers) => ({
-	users: $.collection<User>(),
-	passes: $.collection<Pass>(),
-});

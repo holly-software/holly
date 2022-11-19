@@ -4,7 +4,6 @@
 	import type { Typesaurus } from "typesaurus";
 	import { onDestroy } from "svelte";
 	import { db, reactiveQuery } from "../../firebase";
-	import Icon from "@iconify/svelte";
 
 	export let pass: Typesaurus.Doc<Extract<Pass, { status: "issued" }>, never>;
 
