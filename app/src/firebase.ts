@@ -4,12 +4,12 @@ import { initializeApp } from "firebase/app";
 import {
 	getAuth,
 	GoogleAuthProvider,
-	signInWithPopup,
 	browserSessionPersistence,
 	setPersistence,
 	connectAuthEmulator,
 	onAuthStateChanged,
 	signInWithCredential,
+	signInWithRedirect,
 } from "firebase/auth";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
 import {
@@ -49,7 +49,7 @@ export const signInWithGoogle = async (
 
 		await signInWithCredential(auth, credential);
 	} else {
-		await signInWithPopup(auth, provider).then((res) => {
+		await signInWithRedirect(auth, provider).then((res) => {
 			setPersistence(auth, browserSessionPersistence);
 		});
 	}
