@@ -45,8 +45,8 @@
 <Page>
 	<main>
 		<div class="heading">
-			<span class="title">Active Passes</span>
-			<span class="count">{issued.length}</span>
+			<div class="title">Active Passes</div>
+			<div class="count">{issued.length}</div>
 		</div>
 		{#each issued as pass}
 			<div class="pass" transition:slide>
@@ -66,8 +66,11 @@
 
 		{#each requests as pass}
 			<div class="pass" transition:slide>
-				{pass.data.holder_name}
-				<div class="actions">
+				<div>
+					<div class="name">{pass.data.holder_name}</div>
+					<div class="reason">{pass.data.reason}</div>
+				</div>
+				<div class="pass-actions">
 					<button class="green" on:click={() => issue(pass)}>
 						<Icon icon="tabler:check" />
 					</button>
@@ -123,7 +126,15 @@
 		padding: 6px 12px;
 	}
 
-	.actions {
+	.name {
+		font-size: 1.15em;
+	}
+
+	.reason {
+		color: var(--oc-gray-7);
+	}
+
+	.pass-actions {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
