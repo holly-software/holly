@@ -3,6 +3,7 @@
 	import { db, reactiveQuery, user } from "../firebase";
 	import { get } from "svelte/store";
 	import Page from "../components/Page.svelte";
+	import LiveDuration from "../components/LiveDuration.svelte";
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@grant-pass/schema";
 	import { slide } from "svelte/transition";
@@ -51,8 +52,15 @@
 		</div>
 		{#each issued as pass}
 			<div class="pass" transition:slide>
-				{pass.data.holder_name}
-				<div class="pass-actions">
+				<div>
+					<div class="holder">{pass.data.holder_name}</div>
+					<ul class="info">
+						<li><LiveDuration start={pass.data.issued_at} /></li>
+						<li>{pass.data.reason}</li>
+					</ul>
+				</div>
+
+				<div class="actions">
 					<button class="red" on:click={() => revoke(pass)}>
 						<Icon icon="tabler:x" />
 					</button>
@@ -68,10 +76,13 @@
 		{#each requests as pass}
 			<div class="pass" transition:slide>
 				<div>
-					<div class="name">{pass.data.holder_name}</div>
-					<div class="reason">{pass.data.reason}</div>
+					<div class="holder">{pass.data.holder_name}</div>
+					<ul class="info">
+						<li>{pass.data.reason}</li>
+					</ul>
 				</div>
-				<div class="pass-actions">
+				
+				<div class="actions">
 					<button class="green" on:click={() => issue(pass)}>
 						<Icon icon="tabler:check" />
 					</button>
@@ -131,11 +142,21 @@
 		font-size: 1.15em;
 	}
 
-	.reason {
+	.info {
 		color: var(--oc-gray-7);
+
+		display: flex;
+		flex-direction: row;
+
+		li {
+			&:not(:last-of-type)::after {
+				margin: 0 2px;
+				content: "·";
+			}
+		}
 	}
 
-	.pass-actions {
+	.actions {
 		display: flex;
 		flex-direction: row;
 		align-items: center;

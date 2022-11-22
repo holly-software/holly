@@ -2,8 +2,8 @@
 	import Page from "../../components/Page.svelte";
 	import type { Pass } from "@grant-pass/schema";
 	import type { Typesaurus } from "typesaurus";
-	import { onDestroy } from "svelte";
 	import { db, reactiveQuery } from "../../firebase";
+	import LiveDuration from "../../components/LiveDuration.svelte";
 
 	export let pass: Typesaurus.Doc<Extract<Pass, { status: "issued" }>, never>;
 
@@ -11,27 +11,12 @@
 	let holder = reactiveQuery(db.users.get(pass.data.holder));
 	// @ts-ignore
 	let issuer = reactiveQuery(db.users.get(pass.data.issuer));
-
-	let elapsedSeconds: number = 0;
-
-	const interval = setInterval(() => {
-		elapsedSeconds = Math.floor(
-			(Date.now() - pass.data.issued_at.getTime()) / 1000
-		);
-	}, 1000);
-	onDestroy(() => clearInterval(interval));
-
-	function formatTwoDigits(n: number): string {
-		return Math.floor(n).toString().padStart(2, "0");
-	}
 </script>
 
 <Page>
 	<div class="wrapper">
 		<div class="timer">
-			{`${formatTwoDigits(elapsedSeconds / 60)}:${formatTwoDigits(
-				elapsedSeconds % 60
-			)}`}
+			<LiveDuration start={pass.data.issued_at} />
 		</div>
 
 		<div class="spacer" />
