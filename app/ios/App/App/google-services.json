@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "715846738009",
+    "project_id": "grant-hall-pass",
+    "storage_bucket": "grant-hall-pass.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715846738009:android:e7aa6d38120faf95519148",
+        "android_client_info": {
+          "package_name": "com.maxniederman.grantpass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715846738009-t65rti7ssptv8ukn51mloa2dap704u5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.maxniederman.grantpass",
+            "certificate_hash": "0628c06a64f3a8dae62907300bbb3d027060b90f"
+          }
+        },
+        {
+          "client_id": "715846738009-2d2ddv4p5ua4lmppv31vg1p07ed8gock.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1BAmdsd5VlfHx7Tj16ZYo288p8p31vzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715846738009-2d2ddv4p5ua4lmppv31vg1p07ed8gock.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "715846738009-bg0r8sfml3o7fel0cv0rvrnkdbi8e32n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.maxniederman.grantpass"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
