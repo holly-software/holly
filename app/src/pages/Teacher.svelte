@@ -51,7 +51,7 @@
 		{#each issued as pass}
 			<div class="pass" transition:slide>
 				{pass.data.holder_name}
-				<div class="actions">
+				<div class="pass-actions">
 					<button class="red" on:click={() => revoke(pass)}>
 						<Icon icon="tabler:x" />
 					</button>
