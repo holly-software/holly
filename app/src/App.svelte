@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { auth, db, reactiveQuery, signInWithGoogle, user } from "./firebase";
+	import { db, reactiveQuery, signInWithGoogle, user } from "./firebase";
 	import Teacher from "./pages/Teacher.svelte";
 	import Student from "./pages/student/Student.svelte";
+	import Page from "./components/Page.svelte";
+	import { Circle } from "svelte-loading-spinners";
 
 	enum State {
 		Loading,
@@ -33,26 +34,29 @@
 </script>
 
 {#if state === State.Loading}
-	Loading...
+	<div class="loading">
+		<Circle color="var(--oc-blue-6)" />
+	</div>
 {:else if state === State.Student}
 	<Student />
 {:else if state === State.Teacher}
 	<Teacher />
 {:else if state === State.InvalidUser}
-	<p>
-		You are not a PPS user. Please sign in using your @pps.net or
-		@student.pps.net Google account.
-	</p>
+	<Page heading="Invalid Account">
+		<p>
+			You are not signed in with a PPS account. Please sign in using your
+			@pps.net or @student.pps.net Google account.
+		</p>
 
-	<button on:click={() => signInWithGoogle("select_account")}>
-		Switch Accounts
-	</button>
+		<button on:click={() => signInWithGoogle("select_account")}>
+			Switch Accounts
+		</button>
+	</Page>
 {/if}
 
 <style lang="scss">
-	p,
-	button {
-		margin: 16px 32px;
+	p {
+		margin: 16px 0;
 	}
 
 	button {
@@ -63,5 +67,13 @@
 		border-radius: 6px;
 
 		cursor: pointer;
+	}
+
+	.loading {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
