@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
 
-
-    export let start: Date;
+    export let start: Date | null;
 
     function formatTwoDigits(n: number): string {
         return Math.floor(n).toString().padStart(2, "0");
@@ -13,7 +12,7 @@
         return `${formatTwoDigits(seconds / 60)}:${formatTwoDigits(seconds % 60)}`;
     }
 
-    let formatted: string = formatDuration(Date.now() - start.getTime());
+    let formatted: string = start ? formatDuration(Date.now() - start.getTime()) : formatDuration(0);
 
     const interval = setInterval(() => {
         formatted = formatDuration(Date.now() - start.getTime());
