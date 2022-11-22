@@ -9,6 +9,7 @@
 
 	let passes = reactiveQuery(
 		db.passes.query(($) => [
+			// @ts-ignore
 			$.field("issuer").equal(db.users.id(get(user).uid)),
 			$.field("status").in(["requested", "issued"]),
 		]),
