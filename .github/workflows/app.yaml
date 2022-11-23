@@ -189,7 +189,7 @@ jobs:
         working-directory: app
 
       - name: Build | Bundle
-        run: xcodebuild -workspace ios/App/App.xcworkspace -scheme App -configuration ${{ matrix.build-type }} -sdk iphoneos -destination generic/platform=iOS archive -archivePath app/ios/build/App.xcarchive
+        run: xcodebuild -workspace ios/App/App.xcworkspace -scheme App -configuration ${{ matrix.build-type }} -sdk iphoneos -destination generic/platform=iOS archive -archivePath app/ios/build/App.xcarchive -allowProvisioningUpdates
         working-directory: app
 
       - name: Upload | Bundle
