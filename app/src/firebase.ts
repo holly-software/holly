@@ -12,6 +12,7 @@ import {
 	signInWithRedirect,
 	initializeAuth,
 	indexedDBLocalPersistence,
+	signInWithPopup,
 } from "firebase/auth";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
 import {
@@ -71,7 +72,10 @@ export const signInWithGoogle = async (
 
 		await signInWithCredential(auth, credential);
 	} else {
-		await signInWithRedirect(auth, provider).then(async (res) => {
+		// we need to use signInWithPopup here
+		// see: https://github.com/firebase/firebase-js-sdk/issues/4256
+		// https://github.com/firebase/firebase-js-sdk/issues/6443
+		await signInWithPopup(auth, provider).then((res) => {
 			setPersistence(auth, browserSessionPersistence);
 		});
 	}

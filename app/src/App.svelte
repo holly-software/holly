@@ -4,6 +4,7 @@
 	import Student from "./pages/student/Student.svelte";
 	import Page from "./components/Page.svelte";
 	import { Circle } from "svelte-loading-spinners";
+	import { Capacitor } from "@capacitor/core";
 
 	enum State {
 		Loading,
@@ -15,9 +16,17 @@
 
 
 	user.subscribe(async (user) => {
-		if (user == null) {
-			await signInWithGoogle("consent");
+		// see the comment in firebase.ts for why this is necessary
+		if (Capacitor.isNativePlatform()) {
+			if (user == null) {
+				await signInWithGoogle("consent");
+			}
+		} else {
+			if (user === null) {
+				await signInWithGoogle("consent");
+			}
 		}
+
 	});
 
 	$: userDoc = $user && reactiveQuery(db.users.get(db.users.id($user.uid)));
