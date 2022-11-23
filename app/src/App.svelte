@@ -16,15 +16,8 @@
 
 
 	user.subscribe(async (user) => {
-		// see the comment in firebase.ts for why this is necessary
-		if (Capacitor.isNativePlatform()) {
-			if (user == null) {
-				await signInWithGoogle("consent");
-			}
-		} else {
-			if (user === null) {
-				await signInWithGoogle("consent");
-			}
+		if (user == null) {
+			signInWithGoogle("consent");
 		}
 
 	});
