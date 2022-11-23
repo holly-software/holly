@@ -188,10 +188,6 @@ jobs:
         run: npx cap sync ios
         working-directory: app
 
-      - name: Build | Install Pods
-        run: pod install
-        working-directory: app/ios
-
       - name: Build | Bundle
         run: xcodebuild -workspace app/ios/App.xcworkspace -scheme App -configuration ${{ matrix.build-type }} -sdk iphoneos -destination generic/platform=iOS archive -archivePath app/ios/build/App.xcarchive
         working-directory: app
