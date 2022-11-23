@@ -135,6 +135,73 @@ jobs:
           name: android-bundle-${{ matrix.build-type }}
           path: app/android/app/build/outputs/bundle/${{ matrix.build-type }}
 
+
+  build_ios:
+    name: Build iOS App
+    needs: [build_web]
+
+    strategy:
+      matrix:
+        build-type: [debug, release]
+
+    runs-on: macos-latest
+
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        name: Setup | Install PNPM
+        id: pnpm-install
+        with:
+          version: 7
+
+      - name: Setup | Locate PNPM Store
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup | Cache PNPM Store
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Setup | Install Dependencies
+        run: pnpm install
+
+      - name: Setup | Download Web Distribution
+        uses: actions/download-artifact@v2
+        with:
+          name: web
+          path: app/dist
+
+      - name: Build | Capacitor Sync
+        run: npx cap sync ios
+        working-directory: app
+
+      - name: Build | Install Pods
+        run: pod install
+        working-directory: app/ios
+
+      - name: Build | Bundle
+        run: xcodebuild -workspace app/ios/App.xcworkspace -scheme App -configuration ${{ matrix.build-type }} -sdk iphoneos -destination generic/platform=iOS archive -archivePath app/ios/build/App.xcarchive
+        working-directory: app
+
+      - name: Upload | Bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios-bundle-${{ matrix.build-type }}
+          path: app/ios/build/App.xcarchive
+
   publish_web:
     name: Publish to Cloudflare Pages
 
