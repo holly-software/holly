@@ -13,8 +13,9 @@
 	}
 	let state = State.Loading;
 
+
 	user.subscribe(async (user) => {
-		if (user === null) {
+		if (user == null) {
 			await signInWithGoogle("consent");
 		}
 	});

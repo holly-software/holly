@@ -11,6 +11,9 @@ const config: CapacitorConfig = {
 			providers: ["google.com"],
 		},
 	},
+	server: {
+		"allowNavigation": ["*"]
+	}
 };
 
 export default config;

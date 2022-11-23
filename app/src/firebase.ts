@@ -2,7 +2,7 @@ import { writable, type Readable } from "svelte/store";
 import { Capacitor } from "@capacitor/core";
 import { initializeApp } from "firebase/app";
 import {
-	getAuth,
+	getAuth as NativeGetAuth,
 	GoogleAuthProvider,
 	browserSessionPersistence,
 	setPersistence,
@@ -10,6 +10,8 @@ import {
 	onAuthStateChanged,
 	signInWithCredential,
 	signInWithRedirect,
+	initializeAuth,
+	indexedDBLocalPersistence,
 } from "firebase/auth";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
 import {
@@ -29,10 +31,25 @@ const app = initializeApp({
 	appId: "1:715846738009:web:9a65b4ecfe35c0d3519148",
 });
 
-export const auth = getAuth(app);
+// ios hackery
+// see: https://harryherskowitz.com/2021/08/23/firebase-capacitor.html
+export const getAuth = () => {
+	let auth
+	if (Capacitor.isNativePlatform()) {
+	  auth = initializeAuth(app, {
+		persistence: indexedDBLocalPersistence
+	  });
+	} else {
+	  auth = NativeGetAuth(app);
+	}
+	return auth
+}
+
+export const auth = getAuth(); 
 
 export const user = writable();
 onAuthStateChanged(auth, user.set);
+
 
 export const signInWithGoogle = async (
 	prompt?: "none" | "consent" | "select_account"
@@ -47,9 +64,14 @@ export const signInWithGoogle = async (
 			result.credential?.idToken
 		);
 
+
+		initializeAuth(app, {
+			persistence: indexedDBLocalPersistence
+		})
+
 		await signInWithCredential(auth, credential);
 	} else {
-		await signInWithRedirect(auth, provider).then((res) => {
+		await signInWithRedirect(auth, provider).then(async (res) => {
 			setPersistence(auth, browserSessionPersistence);
 		});
 	}
