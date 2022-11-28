@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { db, reactiveQuery, signInWithGoogle, user } from "./firebase";
+	import { auth, db, reactiveQuery, signInWithGoogle, user } from "./firebase";
 	import Teacher from "./pages/Teacher.svelte";
 	import Student from "./pages/student/Student.svelte";
 	import Page from "./components/Page.svelte";
 	import { Circle } from "svelte-loading-spinners";
-	import { Capacitor } from "@capacitor/core";
+	import { onMount } from "svelte";
 
 	enum State {
 		Loading,
@@ -15,11 +15,10 @@
 	let state = State.Loading;
 
 
-	user.subscribe(async (user) => {
-		if (user == null) {
+	onMount(async () => {
+		if (!auth.currentUser) 
 			signInWithGoogle("consent");
-		}
-
+		
 	});
 
 	$: userDoc = $user && reactiveQuery(db.users.get(db.users.id($user.uid)));
