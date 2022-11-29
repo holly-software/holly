@@ -63,6 +63,8 @@
 		background-color: var(--oc-blue-6);
 		color: var(--oc-gray-0);
 
+		width: 18%;
+		height: 7%;
 		padding: 8px;
 		border-radius: 6px;
 
