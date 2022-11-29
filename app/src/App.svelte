@@ -16,6 +16,9 @@
 
 
 	onMount(async () => {
+		// fixme: handle popup blockers
+		// https://stackoverflow.com/questions/39898356/firebase-signinwithpopup-gives-auth-popup-blocked-when-used-via-built-in-browser
+		// we could fix this by adding a button
 		if (!auth.currentUser) 
 			signInWithGoogle("consent");
 		
