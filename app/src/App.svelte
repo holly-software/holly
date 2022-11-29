@@ -3,8 +3,6 @@
 	import Teacher from "./pages/Teacher.svelte";
 	import Student from "./pages/student/Student.svelte";
 	import Page from "./components/Page.svelte";
-	import { Circle } from "svelte-loading-spinners";
-	import { onMount } from "svelte";
 
 	enum State {
 		Loading,
@@ -14,15 +12,6 @@
 	}
 	let state = State.Loading;
 
-
-	onMount(async () => {
-		// fixme: handle popup blockers
-		// https://stackoverflow.com/questions/39898356/firebase-signinwithpopup-gives-auth-popup-blocked-when-used-via-built-in-browser
-		// we could fix this by adding a button
-		if (!auth.currentUser) 
-			signInWithGoogle("consent");
-		
-	});
 
 	$: userDoc = $user && reactiveQuery(db.users.get(db.users.id($user.uid)));
 	$: {
@@ -39,9 +28,15 @@
 </script>
 
 {#if state === State.Loading}
-	<div class="loading">
-		<Circle color="var(--oc-blue-6)" />
-	</div>
+	<Page heading="Not Signed In">
+		<p>
+			You are not signed in with your Google account.
+		</p>
+
+		<button on:click={() => signInWithGoogle("consent")}>
+			Sign In With Google
+		</button>
+	</Page>
 {:else if state === State.Student}
 	<Student />
 {:else if state === State.Teacher}
@@ -72,13 +67,5 @@
 		border-radius: 6px;
 
 		cursor: pointer;
-	}
-
-	.loading {
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 	}
 </style>
