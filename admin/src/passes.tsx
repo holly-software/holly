@@ -22,11 +22,11 @@ const PassFilter = (props) => (
 export const PassList = (props) => (
   <List {...props} filters={<PassFilter />}>
     <Datagrid>
-      <ReferenceField label="holder" source="holder" reference="users">
-        <TextField source="name" />
+      <ReferenceField label="Holder" source="holder" reference="users">
+        <TextField source="name" label="Holder"/>
       </ReferenceField>
-      <ReferenceField label="issuer" source="Issuer" reference="users">
-        <TextField source="name" />
+      <ReferenceField label="Issuer" source="issuer" reference="users">
+        <TextField source="name" label="Issuer"/>
       </ReferenceField>
     </Datagrid>
   </List>
@@ -37,10 +37,10 @@ export const PassShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <ReferenceField label="holder" source="holder" reference="users">
-        <TextField source="name" />
+        <TextField source="name" label="holder"/>
       </ReferenceField>
       <ReferenceField label="issuer" source="issuer" reference="users">
-        <TextField source="name" />
+        <TextField source="name" label="issuer"/>
       </ReferenceField>
     </SimpleShowLayout>
   </Show>
