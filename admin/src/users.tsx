@@ -8,6 +8,7 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  ShowButton,
 } from "react-admin";
 
 // @ts-ignore
@@ -23,6 +24,8 @@ export const UserList = (props) => (
     <Datagrid>
       <TextField source="name" />
       <TextField label="Teacher" source="role_teacher" />
+      <TextField label="Admin" source="role_admin" />
+      <ShowButton label="" />
     </Datagrid>
   </List>
 );
@@ -32,7 +35,8 @@ export const UserShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="name" />
-      <TextField source="role_teacher" />
+      <TextField label="Teacher" source="role_teacher" />
+      <TextField label="Admin" source="role_admin" />
     </SimpleShowLayout>
   </Show>
 );

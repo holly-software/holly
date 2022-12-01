@@ -9,6 +9,7 @@ import {
   TextField,
   TextInput,
   ReferenceField,
+  ShowButton,
 } from "react-admin";
 
 // @ts-ignore
@@ -28,6 +29,7 @@ export const PassList = (props) => (
       <ReferenceField label="Issuer" source="issuer" reference="users">
         <TextField source="name" label="Issuer"/>
       </ReferenceField>
+      <ShowButton label="" />
     </Datagrid>
   </List>
 );
@@ -36,11 +38,11 @@ export const PassList = (props) => (
 export const PassShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
-      <ReferenceField label="holder" source="holder" reference="users">
-        <TextField source="name" label="holder"/>
+      <ReferenceField label="Holder" source="holder" reference="users">
+        <TextField source="name" label="Holder"/>
       </ReferenceField>
-      <ReferenceField label="issuer" source="issuer" reference="users">
-        <TextField source="name" label="issuer"/>
+      <ReferenceField label="Issuer" source="issuer" reference="users">
+        <TextField source="name" label="Issuer"/>
       </ReferenceField>
     </SimpleShowLayout>
   </Show>
