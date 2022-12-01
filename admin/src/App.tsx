@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Admin, Resource } from "react-admin";
+import { UserList } from "./users";
+import { config as firebaseConfig } from "./FIREBASE_CONFIG";
 
-function App() {
-  const [count, setCount] = useState(0)
+import {
+  FirebaseDataProvider,
+  FirebaseAuthProvider,
+} from 'react-admin-firebase';
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
+import CustomLoginPage from './CustomLoginPage';
 
-export default App
+import firebase from "firebase/compat/app";
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const storage = firebase.storage(firebaseApp);
+
+const authProvider = FirebaseAuthProvider(firebaseConfig, {});
+const dataProvider = FirebaseDataProvider(firebaseConfig, {
+  logging: true,
+  app: firebaseApp,
+  persistence: 'local',
+  dontAddIdFieldToDoc: true,
+  lazyLoading: {
+    enabled: true,
+  },
+  firestoreCostsLogger: {
+    enabled: true,
+  },
+});
+
+
+const App = () => (
+  <>
+        <Admin
+          loginPage={CustomLoginPage}
+          dataProvider={dataProvider}
+          authProvider={authProvider}
+        >
+          <Resource
+            name="users"
+            list={UserList}
+          />
+        </Admin>
+      </>
+);
+
+export default App;
