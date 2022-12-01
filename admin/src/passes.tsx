@@ -8,6 +8,7 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  ReferenceField,
 } from "react-admin";
 
 // @ts-ignore
@@ -21,8 +22,12 @@ const PassFilter = (props) => (
 export const PassList = (props) => (
   <List {...props} filters={<PassFilter />}>
     <Datagrid>
-      <TextField source="holder" />
-      <TextField label="Teacher" source="issuer" />
+      <ReferenceField label="holder" source="holder" reference="users">
+        <TextField source="name" />
+      </ReferenceField>
+      <ReferenceField label="issuer" source="Issuer" reference="users">
+        <TextField source="name" />
+      </ReferenceField>
     </Datagrid>
   </List>
 );
@@ -31,8 +36,12 @@ export const PassList = (props) => (
 export const PassShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
-      <TextField source="holder" />
-      <TextField source="issuer" />
+      <ReferenceField label="holder" source="holder" reference="users">
+        <TextField source="name" />
+      </ReferenceField>
+      <ReferenceField label="issuer" source="issuer" reference="users">
+        <TextField source="name" />
+      </ReferenceField>
     </SimpleShowLayout>
   </Show>
 );
