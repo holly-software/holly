@@ -1,5 +1,6 @@
 import { Admin, Resource } from "react-admin";
 import { UserList } from "./users";
+import { PassList } from "./passes";
 import { config as firebaseConfig } from "./FIREBASE_CONFIG";
 
 import {
@@ -39,6 +40,10 @@ const App = () => (
           <Resource
             name="users"
             list={UserList}
+          />
+          <Resource 
+            name="passes"
+            list={PassList}
           />
         </Admin>
       </>
