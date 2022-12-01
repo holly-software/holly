@@ -46,6 +46,8 @@ export const PassShow = (props) => (
         <TextField source="name" label="Issuer"/>
       </ReferenceField>
       <TextField label="Status" source="status" />
+      <TextField label="End Time" source="revoked_at" />
+      <TextField label="Abort Time" source="aborted_at" />
     </SimpleShowLayout>
   </Show>
 );
