@@ -29,6 +29,7 @@ export const PassList = (props) => (
       <ReferenceField label="Issuer" source="issuer" reference="users">
         <TextField source="name" label="Issuer"/>
       </ReferenceField>
+      <TextField label="Status" source="status" />
       <ShowButton label="" />
     </Datagrid>
   </List>
@@ -44,6 +45,7 @@ export const PassShow = (props) => (
       <ReferenceField label="Issuer" source="issuer" reference="users">
         <TextField source="name" label="Issuer"/>
       </ReferenceField>
+      <TextField label="Status" source="status" />
     </SimpleShowLayout>
   </Show>
 );
