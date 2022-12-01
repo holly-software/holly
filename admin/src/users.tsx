@@ -22,7 +22,7 @@ export const UserList = (props) => (
   <List {...props} filters={<UserFilter />}>
     <Datagrid>
       <TextField source="name" />
-      <TextField source="email" />
+      <TextField label="Teacher" source="role_teacher" />
     </Datagrid>
   </List>
 );
@@ -32,7 +32,7 @@ export const UserShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="name" />
-      <TextField source="email" />
+      <TextField source="role_teacher" />
     </SimpleShowLayout>
   </Show>
 );
