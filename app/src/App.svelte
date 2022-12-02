@@ -12,7 +12,7 @@
 	}
 	let state = State.Loading;
 
-
+	// @ts-ignore 
 	$: userDoc = $user && reactiveQuery(db.users.get(db.users.id($user.uid)));
 	$: {
 		if (!userDoc || $userDoc === null) {

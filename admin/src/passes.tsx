@@ -4,24 +4,27 @@ import {
   Datagrid,
   List,
   Show,
-  Filter,
   SimpleShowLayout,
   TextField,
-  TextInput,
   ReferenceField,
   ShowButton,
+  ReferenceInput,
+  AutocompleteInput,
 } from "react-admin";
 
 // @ts-ignore
-const PassFilter = (props) => (
-  <Filter {...props}>
-    <TextInput label="Search" source="title" alwaysOn />
-  </Filter>
-);
+const PassFilter = [
+  <ReferenceInput source="holder" alwaysOn reference="users" >
+    <AutocompleteInput optionText="name" />
+  </ReferenceInput>,
+  <ReferenceInput source="issuer" alwaysOn reference="users" >
+    <AutocompleteInput optionText="name" />
+  </ReferenceInput>,
+]
 
 // @ts-ignore
 export const PassList = (props) => (
-  <List {...props} filters={<PassFilter />}>
+  <List {...props} filters={PassFilter}>
     <Datagrid>
       <ReferenceField label="Holder" source="holder" reference="users">
         <TextField source="name" label="Holder"/>

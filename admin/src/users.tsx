@@ -9,18 +9,21 @@ import {
   TextField,
   TextInput,
   ShowButton,
+  AutocompleteInput,
+  ReferenceInput,
 } from "react-admin";
 
 // @ts-ignore
-const UserFilter = (props) => (
-  <Filter {...props}>
-    <TextInput label="Search" source="title" alwaysOn />
-  </Filter>
-);
+const UserFilter = [
+  // fixme: clean this up
+  <ReferenceInput source="name" alwaysOn reference="users" >
+    <AutocompleteInput optionText="name" />
+  </ReferenceInput>,
+]
 
 // @ts-ignore
 export const UserList = (props) => (
-  <List {...props} filters={<UserFilter />}>
+  <List {...props} filters={UserFilter}>
     <Datagrid>
       <TextField source="name" />
       <TextField label="Teacher" source="role_teacher" />
