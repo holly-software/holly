@@ -2,14 +2,17 @@ import { writable, type Readable } from "svelte/store";
 import { Capacitor } from "@capacitor/core";
 import { initializeApp } from "firebase/app";
 import {
-	getAuth,
+	getAuth as NativeGetAuth,
 	GoogleAuthProvider,
-	signInWithPopup,
 	browserSessionPersistence,
 	setPersistence,
 	connectAuthEmulator,
 	onAuthStateChanged,
 	signInWithCredential,
+	signInWithRedirect,
+	initializeAuth,
+	indexedDBLocalPersistence,
+	signInWithPopup,
 } from "firebase/auth";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
 import {
@@ -29,10 +32,25 @@ const app = initializeApp({
 	appId: "1:715846738009:web:9a65b4ecfe35c0d3519148",
 });
 
-export const auth = getAuth(app);
+// ios hackery
+// see: https://harryherskowitz.com/2021/08/23/firebase-capacitor.html
+export const getAuth = () => {
+	let auth
+	if (Capacitor.isNativePlatform()) {
+	  auth = initializeAuth(app, {
+		persistence: indexedDBLocalPersistence
+	  });
+	} else {
+	  auth = NativeGetAuth(app);
+	}
+	return auth
+}
+
+export const auth = getAuth(); 
 
 export const user = writable();
 onAuthStateChanged(auth, user.set);
+
 
 export const signInWithGoogle = async (
 	prompt?: "none" | "consent" | "select_account"
@@ -47,8 +65,16 @@ export const signInWithGoogle = async (
 			result.credential?.idToken
 		);
 
+
+		initializeAuth(app, {
+			persistence: indexedDBLocalPersistence
+		})
+
 		await signInWithCredential(auth, credential);
 	} else {
+		// we need to use signInWithPopup here
+		// see: https://github.com/firebase/firebase-js-sdk/issues/4256
+		// https://github.com/firebase/firebase-js-sdk/issues/6443
 		await signInWithPopup(auth, provider).then((res) => {
 			setPersistence(auth, browserSessionPersistence);
 		});

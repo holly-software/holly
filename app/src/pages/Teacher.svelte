@@ -3,12 +3,14 @@
 	import { db, reactiveQuery, user } from "../firebase";
 	import { get } from "svelte/store";
 	import Page from "../components/Page.svelte";
+	import LiveDuration from "../components/LiveDuration.svelte";
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@grant-pass/schema";
 	import { slide } from "svelte/transition";
 
 	let passes = reactiveQuery(
 		db.passes.query(($) => [
+			// @ts-ignore
 			$.field("issuer").equal(db.users.id(get(user).uid)),
 			$.field("status").in(["requested", "issued"]),
 		]),
@@ -45,12 +47,19 @@
 <Page>
 	<main>
 		<div class="heading">
-			<span class="title">Active Passes</span>
-			<span class="count">{issued.length}</span>
+			<div class="title">Active Passes</div>
+			<div class="count">{issued.length}</div>
 		</div>
 		{#each issued as pass}
 			<div class="pass" transition:slide>
-				{pass.data.holder_name}
+				<div>
+					<div class="holder">{pass.data.holder_name}</div>
+					<ul class="info">
+						<li><LiveDuration start={pass.data.issued_at} /></li>
+						<li>{pass.data.reason}</li>
+					</ul>
+				</div>
+
 				<div class="actions">
 					<button class="red" on:click={() => revoke(pass)}>
 						<Icon icon="tabler:x" />
@@ -66,7 +75,13 @@
 
 		{#each requests as pass}
 			<div class="pass" transition:slide>
-				{pass.data.holder_name}
+				<div>
+					<div class="holder">{pass.data.holder_name}</div>
+					<ul class="info">
+						<li>{pass.data.reason}</li>
+					</ul>
+				</div>
+				
 				<div class="actions">
 					<button class="green" on:click={() => issue(pass)}>
 						<Icon icon="tabler:check" />
@@ -121,6 +136,24 @@
 		justify-content: space-between;
 
 		padding: 6px 12px;
+	}
+
+	.name {
+		font-size: 1.15em;
+	}
+
+	.info {
+		color: var(--oc-gray-7);
+
+		display: flex;
+		flex-direction: row;
+
+		li {
+			&:not(:last-of-type)::after {
+				margin: 0 2px;
+				content: "·";
+			}
+		}
 	}
 
 	.actions {

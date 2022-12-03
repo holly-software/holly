@@ -1,7 +1,7 @@
 import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-	appId: "net.pps.grantpass",
+	appId: "com.maxniederman.grantpass",
 	appName: "Grant Pass",
 	webDir: "dist",
 	bundledWebRuntime: false,
@@ -11,6 +11,9 @@ const config: CapacitorConfig = {
 			providers: ["google.com"],
 		},
 	},
+	server: {
+		"allowNavigation": ["*"]
+	}
 };
 
 export default config;
