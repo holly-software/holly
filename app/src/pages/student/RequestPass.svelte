@@ -15,7 +15,7 @@
 	let teachers: Typesaurus.Doc<User, "users">[] = [];
 	onMount(async () => {
 		teachers = await db.users.query(($) => [
-			$.field("role_teacher").equal(true),
+			$.field("roles", "teacher").equal(true),
 		]);
 	});
 

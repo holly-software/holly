@@ -1,6 +1,6 @@
-import { writable, type Readable } from "svelte/store";
+import { writable, type Readable, type Writable } from "svelte/store";
 import { Capacitor } from "@capacitor/core";
-import { initializeApp } from "firebase/app";
+import { getApps, initializeApp } from "firebase/app";
 import {
 	getAuth as NativeGetAuth,
 	GoogleAuthProvider,
@@ -9,14 +9,14 @@ import {
 	connectAuthEmulator,
 	onAuthStateChanged,
 	signInWithCredential,
-	signInWithRedirect,
 	initializeAuth,
 	indexedDBLocalPersistence,
 	signInWithPopup,
+	type User as FirebaseUser,
 } from "firebase/auth";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
-import { schema } from "typesaurus";
+import { schema, type Typesaurus } from "typesaurus";
 import type { TypesaurusCore } from "typesaurus/types/core";
 import type { User, Pass } from "@grant-pass/schema";
 
@@ -45,7 +45,7 @@ export const getAuth = () => {
 
 export const auth = getAuth();
 
-export const user = writable();
+export const user: Writable<FirebaseUser> = writable();
 onAuthStateChanged(auth, user.set);
 
 export const signInWithGoogle = async (
@@ -79,8 +79,8 @@ export const signInWithGoogle = async (
 export const untypedDb = getFirestore(app);
 
 export const db = schema(($) => ({
-	users: $.collection<User>(),
-	passes: $.collection<Pass>(),
+	users: $.collection<User, Typesaurus.Id<"users">>(),
+	passes: $.collection<Pass, Typesaurus.Id<"passes">>(),
 }));
 
 export const reactiveQuery: <Result>(

@@ -1,12 +1,13 @@
-import { schema, Typesaurus } from "typesaurus";
-import type { TypesaurusCore } from "typesaurus/types/core";
+import type { Typesaurus } from "typesaurus";
 
 export type User = {
 	name: string;
 
-	role_admin: boolean;
-	role_teacher: boolean;
-	role_student: boolean;
+	roles: {
+		admin: boolean;
+		teacher: boolean;
+		student: boolean;
+	};
 };
 
 export type Pass =

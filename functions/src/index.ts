@@ -20,9 +20,11 @@ export const createUserDocument = functions.auth
 		await db.users.set(db.users.id(user.uid), {
 			name: user.displayName ?? "No Name",
 
-			role_admin: false,
-			role_teacher: user.email.endsWith("@pps.net"),
-			role_student: user.email.endsWith("@student.pps.net"),
+			roles: {
+				admin: false,
+				teacher: user.email.endsWith("@pps.net"),
+				student: user.email.endsWith("@student.pps.net"),
+			}
 		});
 	});
 

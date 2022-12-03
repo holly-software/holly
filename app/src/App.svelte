@@ -12,14 +12,13 @@
 	}
 	let state = State.Loading;
 
-	// @ts-ignore
 	$: userDoc = $user && reactiveQuery(db.users.get(db.users.id($user.uid)));
 	$: {
 		if (!userDoc || $userDoc === null) {
 			state = State.Loading;
-		} else if ($userDoc.data.role_teacher) {
+		} else if ($userDoc.data.roles.teacher) {
 			state = State.Teacher;
-		} else if ($userDoc.data.role_student) {
+		} else if ($userDoc.data.roles.student) {
 			state = State.Student;
 		} else {
 			state = State.InvalidUser;
