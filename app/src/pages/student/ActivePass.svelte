@@ -5,7 +5,7 @@
 	import { db, reactiveQuery } from "../../firebase";
 	import LiveDuration from "../../components/LiveDuration.svelte";
 
-	export let pass: Typesaurus.Doc<Extract<Pass, { status: "issued" }>, never>;
+	export let pass: Typesaurus.Doc<Extract<Pass, { status: "issued" }>, "passes">;
 
 	let holder = reactiveQuery(db.users.get(pass.data.holder));
 	let issuer = reactiveQuery(db.users.get(pass.data.issuer));

@@ -19,14 +19,14 @@
 	$: requests = $passes.filter((doc) => doc.data.status === "requested");
 	$: issued = $passes.filter((doc) => doc.data.status === "issued");
 
-	async function issue(pass: Typesaurus.Doc<Pass, never>) {
+	async function issue(pass: Typesaurus.Doc<Pass, "passes">) {
 		await pass.update(($) => ({
 			status: "issued",
 			issued_at: $.serverDate(),
 		}));
 	}
 
-	async function abort(pass: Typesaurus.Doc<Pass, never>) {
+	async function abort(pass: Typesaurus.Doc<Pass, "passes">) {
 		await pass.update(($) => ({
 			status: "aborted",
 			aborted_by: "issuer",
@@ -34,7 +34,7 @@
 		}));
 	}
 
-	async function revoke(pass: Typesaurus.Doc<Pass, never>) {
+	async function revoke(pass: Typesaurus.Doc<Pass, "passes">) {
 		await pass.update(($) => ({
 			status: "revoked",
 			revoked_by: "issuer",

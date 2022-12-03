@@ -4,7 +4,7 @@
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@grant-pass/schema";
 
-	export let pass: Typesaurus.Doc<Pass, never>;
+	export let pass: Typesaurus.Doc<Pass, "passes">;
 
 	async function cancel() {
 		await pass.update(($) => ({
