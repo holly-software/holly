@@ -1,7 +1,7 @@
 import { Admin, Resource } from "react-admin";
 import { UserList, UserShow } from "./users";
 import { PassList, PassShow } from "./passes";
-import { config as firebaseConfig } from "./FIREBASE_CONFIG";
+import firebaseConfig from "../../firebase-config.json";
 
 import {
 	FirebaseDataProvider,

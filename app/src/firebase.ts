@@ -1,6 +1,6 @@
 import { writable, type Readable, type Writable } from "svelte/store";
 import { Capacitor } from "@capacitor/core";
-import { getApps, initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import {
 	getAuth as NativeGetAuth,
 	GoogleAuthProvider,
@@ -19,15 +19,9 @@ import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { schema, type Typesaurus } from "typesaurus";
 import type { TypesaurusCore } from "typesaurus/types/core";
 import type { User, Pass } from "@grant-pass/schema";
+import firebaseConfig from "../../firebase-config.json";
 
-const app = initializeApp({
-	apiKey: "AIzaSyD22YgNtuN4VA0JJn2nnS0Su0Ovy5hT8rA",
-	authDomain: "grant-hall-pass.firebaseapp.com",
-	projectId: "grant-hall-pass",
-	storageBucket: "grant-hall-pass.appspot.com",
-	messagingSenderId: "715846738009",
-	appId: "1:715846738009:web:9a65b4ecfe35c0d3519148",
-});
+const app = initializeApp(firebaseConfig);
 
 // ios hackery
 // see: https://harryherskowitz.com/2021/08/23/firebase-capacitor.html
