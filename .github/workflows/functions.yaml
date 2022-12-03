@@ -6,6 +6,7 @@ on:
     paths:
       - "functions/**"
       - "schema/**"
+      - "pnpm-lock.yaml"
       - "firebase.json"
       - ".github/workflows/functions.yaml"
 
