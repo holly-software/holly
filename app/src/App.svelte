@@ -12,7 +12,7 @@
 	}
 	let state = State.Loading;
 
-	// @ts-ignore 
+	// @ts-ignore
 	$: userDoc = $user && reactiveQuery(db.users.get(db.users.id($user.uid)));
 	$: {
 		if (!userDoc || $userDoc === null) {
@@ -29,9 +29,7 @@
 
 {#if state === State.Loading}
 	<Page heading="Not Signed In">
-		<p>
-			You are not signed in with your Google account.
-		</p>
+		<p>You are not signed in with your Google account.</p>
 
 		<button on:click={() => signInWithGoogle("consent")}>
 			Sign In With Google

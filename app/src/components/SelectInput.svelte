@@ -34,9 +34,11 @@
 		}
 	}
 
-	$: applicableOptions = options.filter((option) => {
-		return option.label.toLowerCase().includes(searchValue.toLowerCase());
-	});
+	$: applicableOptions = searchedOption
+		? options
+		: options.filter((option) => {
+				return option.label.toLowerCase().includes(searchValue.toLowerCase());
+		  });
 </script>
 
 <input {id} type="search" bind:value={searchValue} on:blur={finishSearch} />

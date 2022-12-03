@@ -14,7 +14,9 @@
 
 	let teachers: Typesaurus.Doc<User, "users">[] = [];
 	onMount(async () => {
-		teachers = await db.users.query(($) => [$.field("role_teacher").equal(true)]);
+		teachers = await db.users.query(($) => [
+			$.field("role_teacher").equal(true),
+		]);
 	});
 
 	async function submit() {
@@ -64,7 +66,7 @@
 					{ value: "Water", label: "Water" },
 					{ value: "Counselor", label: "Counselor" },
 					{ value: "Quiet Space", label: "Quiet Space" },
-					{ value: "Office", label: "Office"}
+					{ value: "Office", label: "Office" },
 				]}
 				allowCustom={true}
 			/>

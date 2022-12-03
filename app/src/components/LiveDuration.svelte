@@ -1,26 +1,28 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
 
-    export let start: Date | null;
+	export let start: Date | null;
 
-    function formatTwoDigits(n: number): string {
-        return Math.floor(n).toString().padStart(2, "0");
-    }
+	function formatTwoDigits(n: number): string {
+		return Math.floor(n).toString().padStart(2, "0");
+	}
 
-    function formatDuration(ms: number) {
-        const seconds = ms / 1000;
-        return `${formatTwoDigits(seconds / 60)}:${formatTwoDigits(seconds % 60)}`;
-    }
+	function formatDuration(ms: number) {
+		const seconds = ms / 1000;
+		return `${formatTwoDigits(seconds / 60)}:${formatTwoDigits(seconds % 60)}`;
+	}
 
-    let formatted: string = start ? formatDuration(Date.now() - start.getTime()) : formatDuration(0);
+	let formatted: string = start
+		? formatDuration(Date.now() - start.getTime())
+		: formatDuration(0);
 
-    const interval = setInterval(() => {
-        formatted = formatDuration(Date.now() - start.getTime());
-    }, 1 * 1000);
+	const interval = setInterval(() => {
+		formatted = formatDuration(Date.now() - start.getTime());
+	}, 1 * 1000);
 
-    onDestroy(() => {
-        clearInterval(interval)
-    })
+	onDestroy(() => {
+		clearInterval(interval);
+	});
 </script>
 
 {formatted}

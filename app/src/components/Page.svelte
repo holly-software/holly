@@ -18,13 +18,13 @@
 
 		padding: 16px;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
 	}
 
-    h1 {
-        font-size: 1.75em;
-        font-weight: 800;
-    }
+	h1 {
+		font-size: 1.75em;
+		font-weight: 800;
+	}
 </style>

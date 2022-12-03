@@ -15,10 +15,7 @@ import {
 	signInWithPopup,
 } from "firebase/auth";
 import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacitor-firebase/authentication";
-import {
-	connectFirestoreEmulator,
-	getFirestore,
-} from "firebase/firestore";
+import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { schema } from "typesaurus";
 import type { TypesaurusCore } from "typesaurus/types/core";
 import type { User, Pass } from "@grant-pass/schema";
@@ -35,22 +32,21 @@ const app = initializeApp({
 // ios hackery
 // see: https://harryherskowitz.com/2021/08/23/firebase-capacitor.html
 export const getAuth = () => {
-	let auth
+	let auth;
 	if (Capacitor.isNativePlatform()) {
-	  auth = initializeAuth(app, {
-		persistence: indexedDBLocalPersistence
-	  });
+		auth = initializeAuth(app, {
+			persistence: indexedDBLocalPersistence,
+		});
 	} else {
-	  auth = NativeGetAuth(app);
+		auth = NativeGetAuth(app);
 	}
-	return auth
-}
+	return auth;
+};
 
-export const auth = getAuth(); 
+export const auth = getAuth();
 
 export const user = writable();
 onAuthStateChanged(auth, user.set);
-
 
 export const signInWithGoogle = async (
 	prompt?: "none" | "consent" | "select_account"
@@ -65,10 +61,9 @@ export const signInWithGoogle = async (
 			result.credential?.idToken
 		);
 
-
 		initializeAuth(app, {
-			persistence: indexedDBLocalPersistence
-		})
+			persistence: indexedDBLocalPersistence,
+		});
 
 		await signInWithCredential(auth, credential);
 	} else {

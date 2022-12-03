@@ -81,7 +81,7 @@
 						<li>{pass.data.reason}</li>
 					</ul>
 				</div>
-				
+
 				<div class="actions">
 					<button class="green" on:click={() => issue(pass)}>
 						<Icon icon="tabler:check" />

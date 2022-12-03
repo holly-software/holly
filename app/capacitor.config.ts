@@ -12,8 +12,8 @@ const config: CapacitorConfig = {
 		},
 	},
 	server: {
-		"allowNavigation": ["*"]
-	}
+		allowNavigation: ["*"],
+	},
 };
 
 export default config;
