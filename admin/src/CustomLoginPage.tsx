@@ -4,9 +4,9 @@ import StyledFirebaseAuth from "./StyledFirebaseAuth";
 import firebase from "firebase/compat/app";
 
 const uiConfig = {
-	signInFlow: "popup",
-	signInSuccessUrl: "#/",
-	signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+  signInFlow: "popup",
+  signInSuccessUrl: "#/",
+  signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
   callbacks: {
     signInSuccessWithAuthResult: (result: { credential: any; user: any; }) => {
       const user = result.user;
