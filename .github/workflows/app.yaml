@@ -98,10 +98,10 @@ jobs:
         run: pnpm run build
         working-directory: admin
 
-      - name: Upload | Web
+      - name: Upload | Admin
         uses: actions/upload-artifact@v3
         with:
-          name: web
+          name: admin
           path: admin/dist
 
 
