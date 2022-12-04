@@ -22,7 +22,7 @@ const PassFilter = [
 
 // @ts-ignore
 export const PassList = (props) => (
-	<List {...props} filters={PassFilter}>
+	<List {...props} filters={PassFilter} title="Holly">
 		<Datagrid>
 			<ReferenceField label="Holder" source="holder" reference="users">
 				<TextField source="name" label="Holder" />
@@ -38,7 +38,7 @@ export const PassList = (props) => (
 
 // @ts-ignore
 export const PassShow = (props) => (
-	<Show {...props}>
+	<Show {...props} title="Holly">
 		<SimpleShowLayout>
 			<ReferenceField label="Holder" source="holder" reference="users">
 				<TextField source="name" label="Holder" />

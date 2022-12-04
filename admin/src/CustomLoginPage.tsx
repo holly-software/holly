@@ -9,6 +9,11 @@ const uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult: (result: { credential: any; user: any; }) => {
       const user = result.user;
+
+      // check if in developer mode
+      if (process.env.NODE_ENV === "development") {
+        return true
+      }
       
       if (!user.email.endsWith('@pps.net')) {
         firebase.auth().signOut();

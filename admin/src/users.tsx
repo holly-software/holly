@@ -5,25 +5,24 @@ import {
 	SimpleShowLayout,
 	TextField,
 	ShowButton,
-	AutocompleteInput,
-	ReferenceInput,
+	Filter,
+	TextInput,
 } from "react-admin";
 
 // @ts-ignore
-const UserFilter = [
-	// fixme: clean this up
-	<ReferenceInput source="name" alwaysOn reference="users">
-		<AutocompleteInput optionText="name" />
-	</ReferenceInput>,
-];
+const UserFilter = (props) => (
+	<Filter {...props}>
+	  <TextInput label="Search" source="name" alwaysOn />
+	</Filter>
+);
 
 // @ts-ignore
 export const UserList = (props) => (
-	<List {...props} filters={UserFilter}>
+	<List {...props} filters={<UserFilter />}>
 		<Datagrid>
 			<TextField source="name" />
-			<TextField label="Teacher" source="role_teacher" />
-			<TextField label="Admin" source="role_admin" />
+			<TextField label="Teacher" source="roles.teacher" />
+			<TextField label="Admin" source="roles.admin" />
 			<ShowButton label="" />
 		</Datagrid>
 	</List>
@@ -31,11 +30,11 @@ export const UserList = (props) => (
 
 // @ts-ignore
 export const UserShow = (props) => (
-	<Show {...props}>
+	<Show {...props} title="Holly">
 		<SimpleShowLayout>
 			<TextField source="name" />
-			<TextField label="Teacher" source="role_teacher" />
-			<TextField label="Admin" source="role_admin" />
+			<TextField label="Teacher" source="roles.teacher" />
+			<TextField label="Admin" source="roles.admin" />
 		</SimpleShowLayout>
 	</Show>
 );
