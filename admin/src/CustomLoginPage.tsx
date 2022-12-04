@@ -1,4 +1,3 @@
-import React from "react";
 import { Login, LoginForm } from "react-admin";
 import StyledFirebaseAuth from "./StyledFirebaseAuth";
 import firebase from "firebase/compat/app";

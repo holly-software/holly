@@ -1,5 +1,3 @@
-import * as React from "react";
-// tslint:disable-next-line:no-var-requires
 import {
 	Datagrid,
 	List,
