@@ -2,20 +2,15 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /users/{user} {
-      allow read: if request.auth.uid == user || resource.data.role_teacher;
+      allow read: if request.auth.uid == user || resource.data.roles.student || resource.data.roles.teacher || resource.data.roles.admin;
     }
 
     match /passes/{pass} {
-      allow read: if request.auth.uid
-                    in [resource.data.issuer || resource.data.holder];
+      allow read: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.student == true || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.teacher == true || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.admin == true;
       
-      // FIXME: do proper validation
-      allow write: if true;
-    }
+      allow update: if request.auth.uid in [resource.data.issuer] || request.auth.uid in [resource.data.holder];
 
-    match /{document=**} {
-      // FIXME: do proper validation
-      allow read, write;
+      allow create: if get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.student == true;
     }
   }
 }
