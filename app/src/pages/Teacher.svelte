@@ -5,7 +5,7 @@
 	import Page from "../components/Page.svelte";
 	import LiveDuration from "../components/LiveDuration.svelte";
 	import type { Typesaurus } from "typesaurus";
-	import type { Pass } from "@grant-pass/schema";
+	import type { Pass } from "@holly/schema";
 	import { slide } from "svelte/transition";
 
 	let passes = reactiveQuery(

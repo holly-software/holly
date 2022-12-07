@@ -1,5 +1,5 @@
 {
-  "name": "@grant-pass/schema",
+  "name": "@holly/schema",
   "version": "1.0.0",
   "description": "",
   "main": "schema.ts",

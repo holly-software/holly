@@ -1,5 +1,5 @@
 {
-	"name": "@grant-pass/app",
+	"name": "@holly/app",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
@@ -15,7 +15,7 @@
 		"@capacitor/core": "^4.4.0",
 		"@capacitor/ios": "^4.4.0",
 		"@fontsource/noto-sans": "^4.5.11",
-		"@grant-pass/schema": "workspace:^1.0.0",
+		"@holly/schema": "workspace:^1.0.0",
 		"@iconify/svelte": "^3.0.0",
 		"@sveltejs/vite-plugin-svelte": "^1.1.0",
 		"@tsconfig/svelte": "^3.0.0",

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { User } from "@grant-pass/schema";
+	import type { User } from "@holly/schema";
 	import { onMount } from "svelte";
 	import { get } from "svelte/store";
 	import type { Typesaurus } from "typesaurus";

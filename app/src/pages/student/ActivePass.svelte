@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Page from "../../components/Page.svelte";
-	import type { Pass } from "@grant-pass/schema";
+	import type { Pass } from "@holly/schema";
 	import type { Typesaurus } from "typesaurus";
 	import { db, reactiveQuery } from "../../firebase";
 	import LiveDuration from "../../components/LiveDuration.svelte";

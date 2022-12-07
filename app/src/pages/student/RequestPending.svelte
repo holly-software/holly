@@ -2,7 +2,7 @@
 	import Page from "../../components/Page.svelte";
 	import { Plane } from "svelte-loading-spinners";
 	import type { Typesaurus } from "typesaurus";
-	import type { Pass } from "@grant-pass/schema";
+	import type { Pass } from "@holly/schema";
 
 	export let pass: Typesaurus.Doc<Pass, "passes">;
 

@@ -1,4 +1,4 @@
-import type { Pass, User } from "@grant-pass/schema";
+import type { Pass, User } from "@holly/schema";
 import { initializeApp } from "firebase-admin/app";
 import * as functions from "firebase-functions";
 import { schema } from "typesaurus";

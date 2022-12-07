@@ -18,7 +18,7 @@ import { FirebaseAuthentication as NativeFirebaseAuthentication } from "@capacit
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { schema, type Typesaurus } from "typesaurus";
 import type { TypesaurusCore } from "typesaurus/types/core";
-import type { User, Pass } from "@grant-pass/schema";
+import type { User, Pass } from "@holly/schema";
 import firebaseConfig from "../../firebase-config.json";
 
 const app = initializeApp(firebaseConfig);
