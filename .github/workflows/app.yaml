@@ -304,6 +304,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: grant-pass
+          projectName: holly
           directory: app/dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
