@@ -3,6 +3,7 @@
 	import { Plane } from "svelte-loading-spinners";
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@holly/schema";
+	import Loading from "../../components/Loading.svelte";
 
 	export let pass: Typesaurus.Doc<Pass, "passes">;
 
@@ -17,7 +18,7 @@
 
 <Page>
 	<main>
-		<Plane color="var(--oc-blue-5)" />
+		<Loading type="plane" color="var(--oc-blue-5)" height="unset" />
 		<p>Waiting for confirmation...</p>
 		<button on:click={cancel}>Cancel</button>
 	</main>

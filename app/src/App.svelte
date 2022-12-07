@@ -3,7 +3,7 @@
 	import Teacher from "./pages/Teacher.svelte";
 	import Student from "./pages/student/Student.svelte";
 	import Page from "./components/Page.svelte";
-	import { Circle } from "svelte-loading-spinners";
+	import Loading from "./components/Loading.svelte";
 
 	enum State {
 		Loading,
@@ -31,9 +31,7 @@
 </script>
 
 {#if state === State.Loading}
-	<div class="loading">
-		<Circle color="var(--oc-blue-6)" />
-	</div>
+	<Loading height="100vh" type="circle" color="var(--oc-blue-6)"/>
 {:else if state === State.Student}
 	<Student />
 {:else if state === State.Teacher}
@@ -60,14 +58,6 @@
 {/if}
 
 <style lang="scss">
-	.loading {
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-
 	p {
 		margin: 16px 0;
 	}

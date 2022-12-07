@@ -29,7 +29,7 @@ export const auth = Capacitor.isNativePlatform()
 	? initializeAuth(app, { persistence: indexedDBLocalPersistence })
 	: NativeGetAuth(app);
 
-export const user: Writable<FirebaseUser> = writable(undefined);
+export const user: Writable<FirebaseUser | null | undefined> = writable(undefined);
 onAuthStateChanged(auth, user.set);
 
 export const signInWithGoogle = async (
