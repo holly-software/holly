@@ -3,19 +3,23 @@
 	import Teacher from "./pages/Teacher.svelte";
 	import Student from "./pages/student/Student.svelte";
 	import Page from "./components/Page.svelte";
+	import { Circle } from "svelte-loading-spinners";
 
 	enum State {
 		Loading,
 		Teacher,
 		Student,
+		NoUser,
 		InvalidUser,
 	}
 	let state = State.Loading;
 
 	$: userDoc = $user && reactiveQuery(db.users.get(db.users.id($user.uid)));
 	$: {
-		if (!userDoc || $userDoc === null) {
+		if ($user === undefined || $userDoc === null) {
 			state = State.Loading;
+		} else if ($user === null) {
+			state = State.NoUser;
 		} else if ($userDoc.data.roles.teacher) {
 			state = State.Teacher;
 		} else if ($userDoc.data.roles.student) {
@@ -27,6 +31,14 @@
 </script>
 
 {#if state === State.Loading}
+	<div class="loading">
+		<Circle color="var(--oc-blue-6)" />
+	</div>
+{:else if state === State.Student}
+	<Student />
+{:else if state === State.Teacher}
+	<Teacher />
+{:else if state === State.NoUser}
 	<Page heading="Not Signed In">
 		<p>You are not signed in with your Google account.</p>
 
@@ -34,10 +46,6 @@
 			Sign In With Google
 		</button>
 	</Page>
-{:else if state === State.Student}
-	<Student />
-{:else if state === State.Teacher}
-	<Teacher />
 {:else if state === State.InvalidUser}
 	<Page heading="Invalid Account">
 		<p>
@@ -52,6 +60,14 @@
 {/if}
 
 <style lang="scss">
+	.loading {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
 	p {
 		margin: 16px 0;
 	}

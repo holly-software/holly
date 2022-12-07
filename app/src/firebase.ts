@@ -25,21 +25,11 @@ const app = initializeApp(firebaseConfig);
 
 // ios hackery
 // see: https://harryherskowitz.com/2021/08/23/firebase-capacitor.html
-export const getAuth = () => {
-	let auth;
-	if (Capacitor.isNativePlatform()) {
-		auth = initializeAuth(app, {
-			persistence: indexedDBLocalPersistence,
-		});
-	} else {
-		auth = NativeGetAuth(app);
-	}
-	return auth;
-};
+export const auth = Capacitor.isNativePlatform()
+	? initializeAuth(app, { persistence: indexedDBLocalPersistence })
+	: NativeGetAuth(app);
 
-export const auth = getAuth();
-
-export const user: Writable<FirebaseUser> = writable();
+export const user: Writable<FirebaseUser> = writable(undefined);
 onAuthStateChanged(auth, user.set);
 
 export const signInWithGoogle = async (
