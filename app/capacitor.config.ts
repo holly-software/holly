@@ -1,8 +1,8 @@
 import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-	appId: "com.maxniederman.grantpass",
-	appName: "Grant Pass",
+	appId: "com.maxniederman.holly",
+	appName: "Holly",
 	webDir: "dist",
 	bundledWebRuntime: false,
 	plugins: {
