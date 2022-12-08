@@ -5,9 +5,8 @@ on:
   push:
     paths:
       - "admin/**"
-      - "schema/**"
       - "pnpm-lock.yaml"
-      - ".github/workflows/app.yaml"
+      - ".github/workflows/dashboard.yaml"
 
 jobs:
   build:
