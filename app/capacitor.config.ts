@@ -1,7 +1,7 @@
 import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-	appId: "com.maxniederman.holly",
+	appId: "school.holly.app",
 	appName: "Holly",
 	webDir: "dist",
 	bundledWebRuntime: false,
