@@ -60,7 +60,7 @@ jobs:
     name: Publish to Cloudflare Pages
 
     runs-on: ubuntu-latest
-    needs: [build_web]
+    needs: [build]
     steps:
       - name: Setup | Checkout
         uses: actions/checkout@v3
