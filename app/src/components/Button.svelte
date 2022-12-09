@@ -35,6 +35,8 @@
             color: var(--oc-gray-9);
 
 			border: 1px solid var(--oc-red-5);
+
+            cursor: not-allowed;
 		}
 	}
 </style>
