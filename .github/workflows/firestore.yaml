@@ -26,4 +26,5 @@ jobs:
         with:
           args: deploy --only firestore
         env:
+          PROJECT_ID: holly-prod
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
