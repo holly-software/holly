@@ -16,7 +16,10 @@
 		width: 100vw;
 		overflow-y: scroll;
 
-		padding: 16px;
+		margin: auto;
+		max-width: 600px;
+
+		padding: 32px;
 
 		display: flex;
 		flex-direction: column;
