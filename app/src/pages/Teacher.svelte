@@ -7,6 +7,7 @@
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@holly/schema";
 	import { slide } from "svelte/transition";
+	import Button from "../components/Button.svelte";
 
 	let passes = reactiveQuery(
 		db.passes.query(($) => [
@@ -115,8 +116,6 @@
 		}
 
 		.count {
-			margin-right: 16px;
-
 			display: block;
 			padding: 4px 8px;
 

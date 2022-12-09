@@ -4,6 +4,7 @@
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@holly/schema";
 	import Loading from "../../components/Loading.svelte";
+	import Button from "../../components/Button.svelte";
 
 	export let pass: Typesaurus.Doc<Pass, "passes">;
 
@@ -20,7 +21,7 @@
 	<main>
 		<Loading type="plane" color="var(--oc-blue-5)" height="unset" />
 		<p>Waiting for confirmation...</p>
-		<button on:click={cancel}>Cancel</button>
+		<Button on:click={cancel} style="danger">Cancel</Button>
 	</main>
 </Page>
 
@@ -36,15 +37,5 @@
 	p {
 		margin: 24px 0;
 		font-size: 1.25em;
-	}
-
-	button {
-		padding: 8px 24px;
-
-		border-radius: 4px;
-		cursor: pointer;
-
-		color: white;
-		background-color: var(--oc-red-5);
 	}
 </style>

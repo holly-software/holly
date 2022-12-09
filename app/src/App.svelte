@@ -4,6 +4,7 @@
 	import Student from "./pages/student/Student.svelte";
 	import Page from "./components/Page.svelte";
 	import Loading from "./components/Loading.svelte";
+	import Button from "./components/Button.svelte";
 
 	enum State {
 		Loading,
@@ -31,7 +32,7 @@
 </script>
 
 {#if state === State.Loading}
-	<Loading height="100vh" type="circle" color="var(--oc-blue-6)"/>
+	<Loading height="100vh" type="circle" color="var(--oc-blue-6)" />
 {:else if state === State.Student}
 	<Student />
 {:else if state === State.Teacher}
@@ -40,9 +41,11 @@
 	<Page heading="Not Signed In">
 		<p>You are not signed in with your Google account.</p>
 
-		<button on:click={() => signInWithGoogle("consent")}>
-			Sign In With Google
-		</button>
+		<Button
+			on:click={() => signInWithGoogle("consent")}
+		>
+			Sign In
+		</Button>
 	</Page>
 {:else if state === State.InvalidUser}
 	<Page heading="Invalid Account">
@@ -51,26 +54,14 @@
 			@pps.net or @student.pps.net Google account.
 		</p>
 
-		<button on:click={() => signInWithGoogle("select_account")}>
+		<Button on:click={() => signInWithGoogle("select_account")}>
 			Switch Accounts
-		</button>
+		</Button>
 	</Page>
 {/if}
 
 <style lang="scss">
 	p {
 		margin: 16px 0;
-	}
-
-	button {
-		background-color: var(--oc-blue-6);
-		color: var(--oc-gray-0);
-
-		width: 20rem;
-		height: 3rem;
-		padding: 8px;
-		border-radius: 6px;
-
-		cursor: pointer;
 	}
 </style>

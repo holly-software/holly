@@ -3,6 +3,7 @@
 	import { onMount } from "svelte";
 	import { get } from "svelte/store";
 	import type { Typesaurus } from "typesaurus";
+	import Button from "../../components/Button.svelte";
 	import Page from "../../components/Page.svelte";
 	import SelectInput, {
 		type Option,
@@ -75,7 +76,7 @@
 		<div class="spacer" />
 
 		<div class="form-item">
-			<button type="submit" class:can-submit={canSubmit}>Submit</button>
+			<Button type="submit" disabled={!canSubmit}>Submit</Button>
 		</div>
 	</form>
 </Page>
@@ -101,27 +102,8 @@
 			}
 
 			:global(input),
-			button {
+			:global(button) {
 				width: 100%;
-			}
-		}
-
-		button {
-			padding: 12px;
-
-			cursor: pointer;
-
-			font-size: 1.15em;
-			font-weight: 800;
-
-			border: 1px solid var(--oc-red-5);
-			border-radius: 8px;
-			background-color: var(--oc-gray-3);
-
-			&.can-submit {
-				border: none;
-				color: var(--oc-gray-0);
-				background-color: var(--oc-blue-6);
 			}
 		}
 	}
