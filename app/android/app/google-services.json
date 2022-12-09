@@ -29,6 +29,13 @@
             {
               "client_id": "100310942224-h957d7lfrcg66h5094grgapbge6pojr0.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "100310942224-h0qo9j6gjdkc0lbd9q1qee8b8u4drm0f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "school.holly.app"
+              }
             }
           ]
         }
