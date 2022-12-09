@@ -19,9 +19,16 @@ import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { schema, type Typesaurus } from "typesaurus";
 import type { TypesaurusCore } from "typesaurus/types/core";
 import type { User, Pass } from "@holly/schema";
-import firebaseConfig from "../../firebase-config.json";
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp({
+	apiKey: "AIzaSyBH10BCoFKPtPWeaW4_xT3g5CSfqgnAwrw",
+	authDomain: "holly-prod.firebaseapp.com",
+	projectId: "holly-prod",
+	storageBucket: "holly-prod.appspot.com",
+	messagingSenderId: "100310942224",
+	appId: "1:100310942224:web:d453f189b2167662ae8095",
+	measurementId: "G-YJDT0LH6T5",
+});
 
 // ios hackery
 // see: https://harryherskowitz.com/2021/08/23/firebase-capacitor.html
@@ -29,7 +36,8 @@ export const auth = Capacitor.isNativePlatform()
 	? initializeAuth(app, { persistence: indexedDBLocalPersistence })
 	: NativeGetAuth(app);
 
-export const user: Writable<FirebaseUser | null | undefined> = writable(undefined);
+export const user: Writable<FirebaseUser | null | undefined> =
+	writable(undefined);
 onAuthStateChanged(auth, user.set);
 
 export const signInWithGoogle = async (

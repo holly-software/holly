@@ -1,4 +1,4 @@
-package com.maxniederman.grantpass;
+package school.holly.app;
 
 import com.getcapacitor.BridgeActivity;
 

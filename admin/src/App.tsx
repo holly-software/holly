@@ -1,7 +1,6 @@
 import { Admin, Resource } from "react-admin";
 import { UserList, UserShow } from "./users";
 import { PassList, PassShow } from "./passes";
-import firebaseConfig from "../../firebase-config.json";
 
 import {
 	FirebaseDataProvider,
@@ -11,6 +10,16 @@ import {
 import CustomLoginPage from "./CustomLoginPage";
 
 import firebase from "firebase/compat/app";
+
+const firebaseConfig = {
+	apiKey: "AIzaSyBH10BCoFKPtPWeaW4_xT3g5CSfqgnAwrw",
+	authDomain: "holly-prod.firebaseapp.com",
+	projectId: "holly-prod",
+	storageBucket: "holly-prod.appspot.com",
+	messagingSenderId: "100310942224",
+	appId: "1:100310942224:web:2e9dc19ec0e65accae8095",
+	measurementId: "G-FT1H160GDK",
+};
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 export const storage = firebase.storage(firebaseApp);

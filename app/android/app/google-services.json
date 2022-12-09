@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "715846738009",
-    "project_id": "grant-hall-pass",
-    "storage_bucket": "grant-hall-pass.appspot.com"
+    "project_number": "100310942224",
+    "project_id": "holly-prod",
+    "storage_bucket": "holly-prod.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:715846738009:android:e7aa6d38120faf95519148",
+        "mobilesdk_app_id": "1:100310942224:android:e8ad642d3cf011d4ae8095",
         "android_client_info": {
-          "package_name": "com.maxniederman.grantpass"
+          "package_name": "school.holly.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "715846738009-2d2ddv4p5ua4lmppv31vg1p07ed8gock.apps.googleusercontent.com",
+          "client_id": "100310942224-h957d7lfrcg66h5094grgapbge6pojr0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB1BAmdsd5VlfHx7Tj16ZYo288p8p31vzE"
+          "current_key": "AIzaSyBgEqNzk-sbVOYwIhiJfwvsKCXmP_nBrHA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "715846738009-2d2ddv4p5ua4lmppv31vg1p07ed8gock.apps.googleusercontent.com",
+              "client_id": "100310942224-h957d7lfrcg66h5094grgapbge6pojr0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -12,7 +12,7 @@ import {
 // @ts-ignore
 const UserFilter = (props) => (
 	<Filter {...props}>
-	  <TextInput label="Search" source="name" alwaysOn />
+		<TextInput label="Search" source="name" alwaysOn />
 	</Filter>
 );
 

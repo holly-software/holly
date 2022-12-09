@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>715846738009-bg0r8sfml3o7fel0cv0rvrnkdbi8e32n.apps.googleusercontent.com</string>
+	<string>100310942224-h0qo9j6gjdkc0lbd9q1qee8b8u4drm0f.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.715846738009-bg0r8sfml3o7fel0cv0rvrnkdbi8e32n</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>715846738009-t65rti7ssptv8ukn51mloa2dap704u5n.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.100310942224-h0qo9j6gjdkc0lbd9q1qee8b8u4drm0f</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA3FiptK5B-LxvqtkL1X1uFpTHmOxrm0dg</string>
+	<string>AIzaSyBGsPrntzK-auNCR2u0mh2VtJvgu_pLQKk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>715846738009</string>
+	<string>100310942224</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.maxniederman.grantpass</string>
+	<string>school.holly.app</string>
 	<key>PROJECT_ID</key>
-	<string>grant-hall-pass</string>
+	<string>holly-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>grant-hall-pass.appspot.com</string>
+	<string>holly-prod.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:715846738009:ios:05d7ee14508552bd519148</string>
+	<string>1:100310942224:ios:70b0e00da72ee118ae8095</string>
 </dict>
 </plist>
