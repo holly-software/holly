@@ -15,15 +15,36 @@ import {
 	ReceiptLong as ReceiptLongIcon,
 	Logout as LogoutIcon,
 } from "@mui/icons-material";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLoaderData, useLocation } from "react-router-dom";
+import { getUser } from "../firebase";
+import { User as FBUser } from "firebase/auth";
+
+type LoaderData = {
+	user: FBUser | null;
+};
 
 function Root() {
+	const { user } = useLoaderData() as LoaderData;
+	const location = useLocation();
+
+	if (!user) {
+		return <Navigate to="/auth/login" state={{ from: location }} replace />;
+	}
+
 	return (
 		<Box sx={{ display: "flex", flexDirection: "row" }}>
 			<Nav />
 			<Outlet />
 		</Box>
 	);
+}
+
+export async function loader(): Promise<LoaderData> {
+	const user = await getUser();
+
+	return {
+		user,
+	};
 }
 
 // TODO: make this responsive
@@ -54,7 +75,7 @@ function Nav() {
 			<Box sx={{ flexGrow: 1 }} />
 			<nav aria-label="dashboard settings and actions">
 				<List>
-					<NavLink to="/logout" name="Log Out" icon={<LogoutIcon />} />
+					<NavLink to="/auth/logout" name="Log Out" icon={<LogoutIcon />} />
 				</List>
 			</nav>
 		</Box>

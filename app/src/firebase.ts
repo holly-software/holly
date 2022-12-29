@@ -20,7 +20,7 @@ import { schema, type Typesaurus } from "typesaurus";
 import type { TypesaurusCore } from "typesaurus/types/core";
 import type { User, Pass } from "@holly/schema";
 
-const app = initializeApp({
+export const app = initializeApp({
 	apiKey: "AIzaSyBH10BCoFKPtPWeaW4_xT3g5CSfqgnAwrw",
 	authDomain: "holly-prod.firebaseapp.com",
 	projectId: "holly-prod",
@@ -88,5 +88,3 @@ if (import.meta.env.DEV) {
 	connectAuthEmulator(auth, "http://localhost:9099");
 	connectFirestoreEmulator(untypedDb, "localhost", 9080);
 }
-
-export default app;
