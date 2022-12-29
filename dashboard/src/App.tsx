@@ -3,6 +3,7 @@ import theme from "./theme";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root, { loader as rootLoader } from "./routes/root";
 import Error from "./routes/error";
+import People from "./routes/people";
 import { Login, logoutLoader } from "./routes/auth";
 
 const router = createBrowserRouter([
@@ -13,9 +14,10 @@ const router = createBrowserRouter([
 		loader: rootLoader,
 		children: [
 			{
-				path: "dashboard",
-			}
-		]
+				path: "people",
+				element: <People />,
+			},
+		],
 	},
 	{
 		path: "/auth",

@@ -32,7 +32,14 @@ function Root() {
 	}
 
 	return (
-		<Box sx={{ display: "flex", flexDirection: "row" }}>
+		<Box
+			sx={{
+				display: "flex",
+				flexDirection: "row",
+				height: "100vh",
+				width: "100vw",
+			}}
+		>
 			<Nav />
 			<Outlet />
 		</Box>

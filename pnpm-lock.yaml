@@ -68,8 +68,10 @@ importers:
       '@holly/schema': workspace:^1.0.0
       '@mui/icons-material': ^5.11.0
       '@mui/material': ^5.11.0
+      '@mui/x-data-grid': ^5.17.17
       '@types/react': ^18.0.26
       '@types/react-dom': ^18.0.9
+      '@typesaurus/react': 6.0.0-alpha.4
       '@vitejs/plugin-react-swc': ^3.0.0
       firebase: ^9.14.0
       react: ^18.2.0
@@ -85,6 +87,8 @@ importers:
       '@holly/schema': link:../schema
       '@mui/icons-material': 5.11.0_2q3lgv2yds5td5xef72rojpyny
       '@mui/material': 5.11.0_lskpmcsdi7ipu6qpuapyu56ihm
+      '@mui/x-data-grid': 5.17.17_p6yfpsk7wjya6rmycsvhbfsqqe
+      '@typesaurus/react': 6.0.0-alpha.4_l3cvh2uug6k2w4d4zhpbron7jy
       firebase: 9.14.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1548,6 +1552,25 @@ packages:
       react-is: 18.2.0
     dev: false
 
+  /@mui/x-data-grid/5.17.17_p6yfpsk7wjya6rmycsvhbfsqqe:
+    resolution: {integrity: sha512-03XwKeZ5q93CUf7EdJTBfqf3y3cd0vOEH1dXnusk0NaNROW/uBcnwTix9/1D7hhlCNs+Unq98Qffe2W/sR++Xg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.4.1
+      '@mui/system': ^5.4.1
+      react: ^17.0.2 || ^18.0.0
+      react-dom: ^17.0.2 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.20.6
+      '@mui/material': 5.11.0_lskpmcsdi7ipu6qpuapyu56ihm
+      '@mui/utils': 5.11.0_react@18.2.0
+      clsx: 1.2.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      reselect: 4.1.7
+    dev: false
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1965,6 +1988,16 @@ packages:
   /@types/slice-ansi/4.0.0:
     resolution: {integrity: sha512-+OpjSaq85gvlZAYINyzKpLeiFkSC4EsC6IIiT6v6TLSU5k5U83fHGj9Lel8oKEXM0HqgrMVCjXPDPVICtxF7EQ==}
     dev: true
+
+  /@typesaurus/react/6.0.0-alpha.4_l3cvh2uug6k2w4d4zhpbron7jy:
+    resolution: {integrity: sha512-QIV8wy+CPuS4k6C5BXzMQxAZCGiszeIhkN8l5ATq3zuq8bh6auPYJPu7fuoy2PJo6JYlSzvhzbxa3kbdrpIfcQ==}
+    peerDependencies:
+      react: '*'
+      typesaurus: '*'
+    dependencies:
+      react: 18.2.0
+      typesaurus: 10.0.0-alpha.41
+    dev: false
 
   /@vitejs/plugin-react-swc/3.0.0_vite@4.0.1:
     resolution: {integrity: sha512-vYlodz/mjYRbxMGbHzDgR8aPR+z8n7K/enWkyBGH096xrL2DIPCuTvQVRYPTXGyy6wO7OFiMxZ3r4nKQD1sH0A==}
@@ -6334,6 +6367,10 @@ packages:
     resolution: {integrity: sha512-JRrFk1D4OQ4SqovXOgdav+K8EAhSB/LJZqCz8tbX0KObcdeM15Ss59ozWMBWmmINMagCwmqn4ZNryUGpBsl6Jw==}
     dependencies:
       lodash: 4.17.21
+
+  /reselect/4.1.7:
+    resolution: {integrity: sha512-Zu1xbUt3/OPwsXL46hvOOoQrap2azE7ZQbokq61BQfiXvhewsKDwhMeZjTX9sX0nvw1t/U5Audyn1I9P/m9z0A==}
+    dev: false
 
   /resolve-from/4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}

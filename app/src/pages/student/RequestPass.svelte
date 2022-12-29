@@ -28,10 +28,8 @@
 		db.passes.add(($) => ({
 			status: "requested",
 
-			// @ts-ignore
 			holder: db.users.id(get(user).uid),
 			// FIXME: this should get the name from the user's profile, not their Google account
-			// @ts-ignore
 			holder_name: get(user).displayName,
 			issuer: teacher.value,
 

@@ -11,7 +11,7 @@ import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { schema, Typesaurus } from "typesaurus";
 import type { TypesaurusCore } from "typesaurus/types/core";
 import type { User, Pass } from "@holly/schema";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const app = initializeApp({
 	apiKey: "AIzaSyBH10BCoFKPtPWeaW4_xT3g5CSfqgnAwrw",
@@ -55,19 +55,6 @@ export const db = schema(($) => ({
 	users: $.collection<User, Typesaurus.Id<"users">>(),
 	passes: $.collection<Pass, Typesaurus.Id<"passes">>(),
 }));
-
-export const useReactiveQuery: <Result>(
-	query: TypesaurusCore.SubscriptionPromise<unknown, Result, unknown>,
-	initial?: Result
-) => Result | undefined = (query, initial) => {
-	const [result, setResult] = useState(initial);
-
-	useEffect(() => {
-		query.on((newResult, _meta) => setResult(newResult));
-	}, [query]);
-
-	return result;
-};
 
 if (import.meta.env.DEV) {
 	connectAuthEmulator(auth, "http://localhost:9099");
