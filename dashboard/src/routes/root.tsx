@@ -15,11 +15,13 @@ import {
 	ReceiptLong as ReceiptLongIcon,
 	Logout as LogoutIcon,
 } from "@mui/icons-material";
+import { Outlet } from "react-router-dom";
 
 function Root() {
 	return (
 		<Box sx={{ display: "flex", flexDirection: "row" }}>
 			<Nav />
+			<Outlet />
 		</Box>
 	);
 }
@@ -31,7 +33,7 @@ function Nav() {
 		name: string;
 		icon: React.ReactNode;
 	}> = ({ to, name, icon }) => (
-		<ListItem component={Link} to={to} disablePadding>
+		<ListItem component={Link} to={to} color="inherit" disablePadding>
 			<ListItemButton>
 				<ListItemIcon>{icon}</ListItemIcon>
 				<ListItemText primary={name} />
@@ -52,7 +54,7 @@ function Nav() {
 			<Box sx={{ flexGrow: 1 }} />
 			<nav aria-label="dashboard settings and actions">
 				<List>
-					<NavLink to="/logout" name="Logout" icon={<LogoutIcon />} />
+					<NavLink to="/logout" name="Log Out" icon={<LogoutIcon />} />
 				</List>
 			</nav>
 		</Box>
