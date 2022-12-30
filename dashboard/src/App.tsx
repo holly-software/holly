@@ -5,6 +5,7 @@ import Root, { loader as rootLoader } from "./routes/root";
 import Error from "./routes/error";
 import People from "./routes/people";
 import { Login, logoutLoader } from "./routes/auth";
+import Passes from "./routes/passes";
 
 const router = createBrowserRouter([
 	{
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
 			{
 				path: "people",
 				element: <People />,
+			},
+			{
+				path: "passes",
+				element: <Passes />,
 			},
 		],
 	},

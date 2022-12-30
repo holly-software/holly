@@ -1,10 +1,11 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import { db } from "../firebase";
+import type { Typesaurus } from "typesaurus";
 import { useRead } from "@typesaurus/react";
 import { Container } from "@mui/material";
 
 type Row = {
-	id: string;
+	id: Typesaurus.Id<"users">;
 	name: string;
 	role_student: boolean;
 	role_teacher: boolean;
@@ -12,10 +13,10 @@ type Row = {
 };
 
 function People() {
-	const [users, _] = useRead(db.users.all({ }));
+	const [users, _] = useRead(db.users.all());
 
 	async function processRowUpdate(newRow: Row): Promise<Row> {
-		await db.users.set(db.users.id(newRow.id), {
+		await db.users.set(newRow.id, {
 			name: newRow.name,
 			roles: {
 				student: newRow.role_student,
@@ -63,7 +64,7 @@ function People() {
 	}));
 
 	return (
-		<Container maxWidth="md" sx={{ padding: 5 }}>
+		<Container maxWidth="lg" sx={{ padding: 5 }}>
 			<DataGrid
 				columns={columns}
 				rows={rows}
