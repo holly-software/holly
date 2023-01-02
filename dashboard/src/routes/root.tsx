@@ -61,6 +61,7 @@ function Nav() {
 		name: string;
 		icon: React.ReactNode;
 	}> = ({ to, name, icon }) => (
+		// @ts-ignore
 		<ListItem component={Link} to={to} color="inherit" disablePadding>
 			<ListItemButton>
 				<ListItemIcon>{icon}</ListItemIcon>
