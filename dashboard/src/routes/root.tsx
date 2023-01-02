@@ -16,41 +16,49 @@ import {
 	Logout as LogoutIcon,
 } from "@mui/icons-material";
 import { Navigate, Outlet, useLoaderData, useLocation } from "react-router-dom";
-import { getUser } from "../firebase";
+import { db, getUser } from "../utils/firebase";
 import { User as FBUser } from "firebase/auth";
+import { Typesaurus } from "typesaurus";
+import { User } from "@holly/schema";
+import AuthContext, { AuthContextVal } from "../utils/auth-context";
 
 type LoaderData = {
-	user: FBUser | null;
+	authCtx: AuthContextVal;
 };
 
 function Root() {
-	const { user } = useLoaderData() as LoaderData;
+	const { authCtx } = useLoaderData() as LoaderData;
 	const location = useLocation();
 
-	if (!user) {
+	if (!authCtx) {
 		return <Navigate to="/auth/login" state={{ from: location }} replace />;
 	}
 
 	return (
-		<Box
-			sx={{
-				display: "flex",
-				flexDirection: "row",
-				height: "100vh",
-				width: "100vw",
-			}}
-		>
-			<Nav />
-			<Outlet />
-		</Box>
+		<AuthContext.Provider value={authCtx}>
+			<Box
+				sx={{
+					display: "flex",
+					flexDirection: "row",
+					height: "100vh",
+					width: "100vw",
+				}}
+			>
+				<Nav />
+				<Outlet />
+			</Box>
+		</AuthContext.Provider>
 	);
 }
 
 export async function loader(): Promise<LoaderData> {
-	const user = await getUser();
+	const firebaseUser = await getUser();
 
 	return {
-		user,
+		authCtx: firebaseUser && {
+			firebase: firebaseUser,
+			document: await db.users.get(db.users.id(firebaseUser.uid)),
+		},
 	};
 }
 

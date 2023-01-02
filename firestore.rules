@@ -16,11 +16,11 @@ service cloud.firestore {
 
     match /users/{user} {
       allow read: if hasAnyRoles();
-      allow write: if request.auth.uid == resource.id || getRoles().admin;
+      allow write: if (request.auth.uid == resource.id && request.resource.data.roles == resource.data.roles) || getRoles().admin;
     }
 
     match /passes/{pass} {
-      allow read, update: if request.auth.uid in [resource.data.issuer, resource.data.holder] || getRoles().admin;
+      allow read, update: if request.auth.uid == resource.data.issuer || request.auth.uid == resource.data.holder || getRoles().admin;
       allow create: if getRoles().student && request.resource.data.holder == request.auth.uid && getRolesFor(request.resource.data.issuer).teacher;
     }
   }

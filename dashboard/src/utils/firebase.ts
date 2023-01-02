@@ -9,9 +9,8 @@ import {
 } from "firebase/auth";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { schema, Typesaurus } from "typesaurus";
-import type { TypesaurusCore } from "typesaurus/types/core";
 import type { User, Pass } from "@holly/schema";
-import React, { useEffect, useState } from "react";
+import { useRead } from "@typesaurus/react";
 
 export const app = initializeApp({
 	apiKey: "AIzaSyBH10BCoFKPtPWeaW4_xT3g5CSfqgnAwrw",

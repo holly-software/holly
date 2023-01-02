@@ -1,5 +1,5 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-import { db } from "../firebase";
+import { db, useUserDoc } from "../utils/firebase";
 import type { Typesaurus } from "typesaurus";
 import { useRead } from "@typesaurus/react";
 import { Container } from "@mui/material";
@@ -70,6 +70,7 @@ function People() {
 				rows={rows}
 				experimentalFeatures={{ newEditingApi: true }}
 				processRowUpdate={processRowUpdate}
+				onProcessRowUpdateError={console.error}
 				components={{
 					Toolbar: GridToolbar,
 				}}

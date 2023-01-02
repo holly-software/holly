@@ -1,7 +1,7 @@
 import { Google as GoogleIcon } from "@mui/icons-material";
 import { Button, Stack, Typography } from "@mui/material";
 import { redirect, useLocation, useNavigate } from "react-router-dom";
-import { signInWithGoogle, signOut } from "../firebase";
+import { signInWithGoogle, signOut } from "../utils/firebase";
 
 export function Login() {
 	const navigate = useNavigate();

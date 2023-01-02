@@ -1,9 +1,10 @@
 import { Container } from "@mui/material";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-import { db } from "../firebase";
+import { db } from "../utils/firebase";
 import { useRead } from "@typesaurus/react";
 import type { Pass } from "@holly/schema";
 import type { Typesaurus } from "typesaurus";
+import { useAssumedAuth } from "../utils/auth-context";
 
 type Row = {
 	id: Typesaurus.Id<"passes">;
@@ -16,7 +17,16 @@ type Row = {
 };
 
 function Passes() {
-	const [passes, _] = useRead(db.passes.all());
+	const auth = useAssumedAuth();
+	const roles = auth.document.data.roles;
+
+	const [passes, _] = roles.admin
+		? useRead(db.passes.all())
+		: useRead(
+				db.passes.query(($) => [
+					$.field("issuer").equal(db.users.id(auth.firebase.uid)),
+				])
+		  );
 
 	const columns: GridColDef[] = [
 		{
@@ -28,7 +38,7 @@ function Passes() {
 			field: "holder_name",
 			type: "string",
 			headerName: "Holder",
-            flex: 1,
+			flex: 1,
 		},
 		{
 			field: "reason",
@@ -39,7 +49,7 @@ function Passes() {
 			field: "requested_at",
 			type: "datetime",
 			headerName: "Requested",
-            flex: 2,
+			flex: 2,
 		},
 	];
 
