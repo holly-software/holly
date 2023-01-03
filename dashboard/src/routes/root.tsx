@@ -17,9 +17,6 @@ import {
 } from "@mui/icons-material";
 import { Navigate, Outlet, useLoaderData, useLocation } from "react-router-dom";
 import { db, getUser } from "../utils/firebase";
-import { User as FBUser } from "firebase/auth";
-import { Typesaurus } from "typesaurus";
-import { User } from "@holly/schema";
 import AuthContext, { AuthContextVal } from "../utils/auth-context";
 
 type LoaderData = {
@@ -55,6 +52,7 @@ export async function loader(): Promise<LoaderData> {
 	const firebaseUser = await getUser();
 
 	return {
+		// @ts-ignore - because it can't verify the user document exists
 		authCtx: firebaseUser && {
 			firebase: firebaseUser,
 			document: await db.users.get(db.users.id(firebaseUser.uid)),
@@ -83,7 +81,7 @@ function Nav() {
 		<Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
 			<nav aria-label="main data indexes">
 				<List>
-					<NavLink to="/dashboard" name="Dashboard" icon={<DashboardIcon />} />
+					{/* <NavLink to="/dashboard" name="Dashboard" icon={<DashboardIcon />} /> */}
 					<NavLink to="/people" name="People" icon={<PeopleIcon />} />
 					<NavLink to="/passes" name="Passes" icon={<ReceiptLongIcon />} />
 				</List>

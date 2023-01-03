@@ -1,5 +1,5 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-import { db, useUserDoc } from "../utils/firebase";
+import { db } from "../utils/firebase";
 import type { Typesaurus } from "typesaurus";
 import { useRead } from "@typesaurus/react";
 import { Container } from "@mui/material";

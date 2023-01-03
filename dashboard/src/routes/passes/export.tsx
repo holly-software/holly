@@ -118,7 +118,7 @@ function ExportPasses() {
 						</Typography>
 						<ButtonGroup variant="outlined" fullWidth>
 							<Button
-                                component="a"
+								component="a"
 								href={exportedTable.serialize(CSV).asURL()}
 								download="passes.holly.csv"
 							>
@@ -177,9 +177,18 @@ export async function action({ request }: ActionFunctionArgs) {
 		issuer: names.get(pass.data.issuer) ?? "Ghost",
 		reason: pass.data.reason,
 		requested_at: pass.data.requested_at?.toISOString() ?? "",
-		aborted_at: pass.data.aborted_at?.toISOString() ?? "",
-		issued_at: pass.data.issued_at?.toISOString() ?? "",
-		revoked_at: pass.data.revoked_at?.toISOString() ?? "",
+		aborted_at:
+			(
+				pass.data as Extract<Pass, { status: "aborted" }>
+			).aborted_at?.toISOString() ?? "",
+		issued_at:
+			(
+				pass.data as Extract<Pass, { status: "issued" }>
+			).issued_at?.toISOString() ?? "",
+		revoked_at:
+			(
+				pass.data as Extract<Pass, { status: "revoked" }>
+			).revoked_at?.toISOString() ?? "",
 	});
 
 	switch (mode) {
