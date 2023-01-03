@@ -1,10 +1,10 @@
 import { Container } from "@mui/material";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-import { db } from "../utils/firebase";
+import { db } from "../../utils/firebase";
 import { useRead } from "@typesaurus/react";
 import type { Pass } from "@holly/schema";
 import type { Typesaurus } from "typesaurus";
-import { useAssumedAuth } from "../utils/auth-context";
+import { useAssumedAuth } from "../../utils/auth-context";
 
 type Row = {
 	id: Typesaurus.Id<"passes">;

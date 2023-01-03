@@ -1,11 +1,18 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "./theme";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+	createBrowserRouter,
+	redirect,
+	RouterProvider,
+} from "react-router-dom";
 import Root, { loader as rootLoader } from "./routes/root";
 import Error from "./routes/error";
 import People from "./routes/people";
 import { Login, logoutLoader } from "./routes/auth";
 import Passes from "./routes/passes";
+import ExportPasses, {
+	action as exportPassesAction,
+} from "./routes/passes/export";
 
 const router = createBrowserRouter([
 	{
@@ -20,7 +27,13 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "passes",
-				element: <Passes />,
+				// element: <Passes />,
+				loader: () => redirect("export"),
+			},
+			{
+				path: "passes/export",
+				element: <ExportPasses />,
+				action: exportPassesAction,
 			},
 		],
 	},
