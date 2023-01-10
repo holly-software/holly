@@ -9,9 +9,9 @@ use_frameworks!
 install! 'cocoapods', :disable_input_output_paths => true
 
 def capacitor_pods
-  pod 'Capacitor', :path => '../../../node_modules/.pnpm/@capacitor+ios@4.4.0_@capacitor+core@4.4.0/node_modules/@capacitor/ios'
-  pod 'CapacitorCordova', :path => '../../../node_modules/.pnpm/@capacitor+ios@4.4.0_@capacitor+core@4.4.0/node_modules/@capacitor/ios'
-  pod 'CapacitorFirebaseAuthentication', :path => '../../../node_modules/.pnpm/@capacitor-firebase+authentication@1.2.0_y5ycqylaemcirdlueblno5rtj4/node_modules/@capacitor-firebase/authentication'
+  pod 'Capacitor', :path => '../../../node_modules/.pnpm/@capacitor+ios@4.6.1_@capacitor+core@4.6.1/node_modules/@capacitor/ios'
+  pod 'CapacitorCordova', :path => '../../../node_modules/.pnpm/@capacitor+ios@4.6.1_@capacitor+core@4.6.1/node_modules/@capacitor/ios'
+  pod 'CapacitorFirebaseAuthentication', :path => '../../../node_modules/.pnpm/@capacitor-firebase+authentication@1.3.0_cwhesv37tz3cf3oibsii5dzqwe/node_modules/@capacitor-firebase/authentication'
 end
 
 target 'App' do
