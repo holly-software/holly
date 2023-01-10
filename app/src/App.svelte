@@ -5,6 +5,7 @@
 	import Page from "./components/Page.svelte";
 	import Loading from "./components/Loading.svelte";
 	import Button from "./components/Button.svelte";
+	import { onDestroy } from "svelte";
 
 	enum State {
 		Loading,
@@ -29,6 +30,15 @@
 			state = State.InvalidUser;
 		}
 	}
+
+	// Hack because get queries do not appear to update when the document is first created.
+	// Should only poll while the createUserDocument function is running.
+	const pollUserDocumentInterval = setInterval(() => {
+		if ($user && $userDoc === null) {
+			userDoc = reactiveQuery(db.users.get(db.users.id($user.uid)));
+		}
+	}, 500);
+	onDestroy(() => clearInterval(pollUserDocumentInterval));
 </script>
 
 {#if state === State.Loading}
@@ -41,11 +51,7 @@
 	<Page heading="Not Signed In">
 		<p>You are not signed in with your Google account.</p>
 
-		<Button
-			on:click={() => signInWithGoogle("consent")}
-		>
-			Sign In
-		</Button>
+		<Button on:click={() => signInWithGoogle("consent")}>Sign In</Button>
 	</Page>
 {:else if state === State.InvalidUser}
 	<Page heading="Invalid Account">
