@@ -23,8 +23,6 @@ function ExportPasses() {
 	const auth = useAssumedAuth();
 	const isAdmin = auth.document.data.roles.admin;
 
-	// NOTE: technically this violates the rules of hooks because `isAdmin` can change,
-	//       but we never actually change it so it _should_ be fine
 	const [issuers, _] = useRead(
 		db.users.query(($) => [$.field("roles", "teacher").equal(true)])
 	);
@@ -114,7 +112,7 @@ function ExportPasses() {
 							Download
 						</Typography>
 						<Typography mb={2}>
-							Exported {exportedTable.rows.length} passes.
+							Exported {exportedTable.rows.length - 1} passes.
 						</Typography>
 						<ButtonGroup variant="outlined" fullWidth>
 							<Button
