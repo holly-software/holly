@@ -12,9 +12,8 @@
 
 <style lang="scss">
 	div {
-		height: 100vh;
+		min-height: 100vh;
 		width: 100vw;
-		overflow-y: scroll;
 
 		margin: auto;
 		max-width: 600px;
