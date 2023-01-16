@@ -10,7 +10,6 @@ import {
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { schema, Typesaurus } from "typesaurus";
 import type { User, Pass } from "@holly/schema";
-import { useRead } from "@typesaurus/react";
 
 export const app = initializeApp({
 	apiKey: "AIzaSyBH10BCoFKPtPWeaW4_xT3g5CSfqgnAwrw",
@@ -21,6 +20,7 @@ export const app = initializeApp({
 	appId: "1:100310942224:web:2e9dc19ec0e65accae8095",
 	measurementId: "G-FT1H160GDK",
 });
+window.app = app;
 
 export const auth = getAuth(app);
 
@@ -50,6 +50,7 @@ export const getUser: () => Promise<FBUser | null> = () => {
 };
 
 export const untypedDb = getFirestore(app);
+
 export const db = schema(($) => ({
 	users: $.collection<User, Typesaurus.Id<"users">>(),
 	passes: $.collection<Pass, Typesaurus.Id<"passes">>(),

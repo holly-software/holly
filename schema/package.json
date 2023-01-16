@@ -5,6 +5,6 @@
   "main": "schema.ts",
   "types": "schema.ts",
   "dependencies": {
-    "typesaurus": "10.0.0-alpha.39"
+    "typesaurus": "10.0.0-alpha.41"
   }
 }
