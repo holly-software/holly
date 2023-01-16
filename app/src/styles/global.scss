@@ -1,16 +1,16 @@
 :root {
-	--grey-0: #f3f4f7; // dark mode font
+	--grey-0: #f3f4f7; // dark mode font, light mode bg, light mode disabled button font
 	--grey-1: #e7e9ef;
 	--grey-2: #dadde7;
-	--grey-3: #ced2df;
+	--grey-3: #ced2df; // light mode disabled button
 	--grey-4: #c1c6d7;
-	--grey-5: #b4bbcf;
-	--grey-6: #a8b0c7; // dark mode low contrast font
+	--grey-5: #b4bbcf; // light mode bg contrast
+	--grey-6: #a8b0c7; // dark mode low contrast font, dark mode disabled button font
 	--grey-7: #9ba4bf;
 	--grey-8: #8f99b7;
 	--grey-9: #838eaf;
 	--grey-10: #7682a7; // dark mode disabled button
-	--grey-11: #6a77a0;
+	--grey-11: #6a77a0; // light mode low contrast font
 	--grey-12: #5f6c95;
 	--grey-13: #586389;
 	--grey-14: #50597c;
@@ -22,7 +22,7 @@
 	--grey-20: #202332;
 	--grey-21: #181a25;
 	--grey-22: #101119;
-	--grey-23: #08080c;
+	--grey-23: #08080c; // light mode font
 
 	--green-0: #f0f9f4;
 	--green-1: #e2f3e9;
@@ -32,7 +32,7 @@
 	--green-5: #a7dcbe;
 	--green-6: #99d6b4;
 	--green-7: #8ad0a9;
-	--green-8: #7ccb9e;
+	--green-8: #7ccb9e; // light mode green
 	--green-9: #6dc593;
 	--green-10: #5fbf89; // dark mode green
 	--green-11: #50b97e;
@@ -57,7 +57,7 @@
 	--red-5: #e99ba2;
 	--red-6: #e58a93;
 	--red-7: #e27984;
-	--red-8: #de6874;
+	--red-8: #de6874; //light mode red
 	--red-9: #da5865;
 	--red-10: #d74755; // dark mode red
 	--red-11: #d33646;
