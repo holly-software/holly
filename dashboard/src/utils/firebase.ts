@@ -20,7 +20,6 @@ export const app = initializeApp({
 	appId: "1:100310942224:web:2e9dc19ec0e65accae8095",
 	measurementId: "G-FT1H160GDK",
 });
-window.app = app;
 
 export const auth = getAuth(app);
 
