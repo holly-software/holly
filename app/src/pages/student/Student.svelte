@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { get } from "svelte/store";
+	import Loading from "../../components/Loading.svelte";
 	import { db, reactiveQuery, user } from "../../firebase";
 	import ActivePass from "./ActivePass.svelte";
 	import RequestPass from "./RequestPass.svelte";
@@ -12,7 +13,7 @@
 		]),
 		[]
 	);
-	$: pass = $passes ? $passes[0] : null;
+	$: pass = $passes ? $passes[0] : undefined;
 </script>
 
 {#if pass}
@@ -21,6 +22,8 @@
 	{:else if pass.data.status === "issued"}
 		<ActivePass {pass} />
 	{/if}
-{:else}
+{:else if pass === null}
 	<RequestPass />
+{:else}
+	<Loading type="circle" />
 {/if}
