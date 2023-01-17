@@ -11,19 +11,22 @@
 			$.field("holder").equal(db.users.id(get(user).uid)),
 			$.field("status").in(["requested", "issued"]),
 		]),
-		[]
+		null
 	);
-	$: pass = $passes ? $passes[0] : null;
 </script>
 
-{#if pass}
-	{#if pass.data.status === "requested"}
-		<RequestPending {pass} />
-	{:else if pass.data.status === "issued"}
-		<ActivePass {pass} />
+{#if $passes}
+	{#if $passes.length}
+		{@const pass = $passes[0]}
+
+		{#if pass.data.status === "requested"}
+			<RequestPending {pass} />
+		{:else if pass.data.status === "issued"}
+			<ActivePass {pass} />}
+		{/if}
+	{:else}
+		<RequestPass />
 	{/if}
-{:else if pass === undefined}
-	<RequestPass />
 {:else}
 	<Loading type="circle" />
 {/if}
