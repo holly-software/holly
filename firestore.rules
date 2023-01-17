@@ -15,7 +15,7 @@ service cloud.firestore {
     }
 
     match /users/{user} {
-      allow read: if hasAnyRoles();
+      allow read: if (request.auth.uid == resource.id) || hasAnyRoles();
       allow write: if (request.auth.uid == resource.id && request.resource.data.roles == resource.data.roles) || getRoles().admin;
     }
 
