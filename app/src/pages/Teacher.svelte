@@ -7,7 +7,6 @@
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@holly/schema";
 	import { slide } from "svelte/transition";
-	import Button from "../components/Button.svelte";
 
 	let passes = reactiveQuery(
 		db.passes.query(($) => [
@@ -47,7 +46,7 @@
 <Page>
 	<main>
 		<div class="heading">
-			<div class="title">Active Passes</div>
+			<h1>Active Passes</h1>
 			<div class="count">{issued.length}</div>
 		</div>
 		{#each issued as pass}
@@ -69,7 +68,7 @@
 		{/each}
 
 		<div class="heading">
-			<span class="title">Pass Requests</span>
+			<h1>Pass Requests</h1>
 			<span class="count">{requests.length}</span>
 		</div>
 
@@ -110,9 +109,9 @@
 		justify-content: space-between;
 		align-items: center;
 
-		.title {
+		h1 {
 			font-size: 1.25em;
-			font-weight: 800;
+			font-weight: 700;
 		}
 
 		.count {
@@ -121,8 +120,8 @@
 
 			font-size: 0.85em;
 
-			color: var(--font);
-			background-color: var(--green);
+			color: var(--col-fg);
+			background-color: var(--col-green);
 			border-radius: 8px;
 		}
 	}
@@ -141,7 +140,7 @@
 	}
 
 	.info {
-		color: var(--font-contrast);
+		color: var(--col-fg-contrast);
 
 		display: flex;
 		flex-direction: row;
@@ -173,12 +172,12 @@
 
 			&.green {
 				color: white;
-				background-color: var(--green);
+				background-color: var(--col-green);
 			}
 
 			&.red {
 				color: white;
-				background-color: var(--red);
+				background-color: var(--col-red);
 			}
 		}
 	}

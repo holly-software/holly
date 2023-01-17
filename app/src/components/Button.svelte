@@ -21,18 +21,18 @@
         cursor: pointer;
 
         &.primary {
-            background: var(--green);
-            color: var(--font);
+            background: var(--col-green);
+            color: var(--col-fg);
         }
 
         &.danger {
-            background: var(--red);
-            color: var(--font);
+            background: var(--col-red);
+            color: var(--col-fg);
         }
 
 		&.disabled {
 			background: var(--disabled-button);
-            color: var(--font-contrast);
+            color: var(--col-fg-contrast);
             
 			// border: 1px solid var(--oc-red-5);
 

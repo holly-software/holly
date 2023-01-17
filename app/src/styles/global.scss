@@ -1,20 +1,34 @@
 :root {
-	font-family: "Noto Sans";
+	font-family: var(--font-body);
 
-	background-color: var(--bg);
-	color: var(--font);
+	background-color: var(--col-bg);
+	color: var(--col-fg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
 }
 
 :root {
-    --font: #f3f4f7;
-	--font-contrast: #a8b0c7; // dark mode low contrast font, dark mode disabled button font
+	--font-heading: "Playfair Display";
+	--font-body: "Lato";
+}
+
+:root {
+	--col-fg: #f3f4f7;
+	--col-fg-contrast: #a8b0c7; // dark mode low contrast font, dark mode disabled button font
 	--disabled-button: #7682a7; // dark mode disabled button
-	--bg-contrast: #404764; // dark mode bg contrast
-	--bg: #282c3e; // dark mode bg
+	--col-bg-contrast: #404764; // dark mode bg contrast
+	--col-bg: #282c3e; // dark mode bg
 
-	--green: #5fbf89; // dark mode green
+	--col-green: #5fbf89; // dark mode green
 
-	--red: #d74755; // dark mode red
+	--col-red: #d74755; // dark mode red
 }
 
 .firebase-emulator-warning {

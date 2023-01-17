@@ -76,17 +76,17 @@
 	input {
 		padding: 8px 12px;
 
-		border: 1px solid var(--bg-contrast);
+		border: 1px solid var(--col-bg-contrast);
 		border-radius: 8px;
-		background-color: var(--bg);
+		background-color: var(--col-bg);
 		color: var(--text);
 
 		&:focus,
 		&:hover {
 			outline: none;
 
-			border-color: var(--green);
-			background-color: var(--bg-contrast);
+			border-color: var(--col-green);
+			background-color: var(--col-bg-contrast);
 		}
 	}
 
@@ -96,9 +96,9 @@
 		max-height: 200px;
 		overflow-y: scroll;
 
-		border: 1px solid var(--bg-contrast);
+		border: 1px solid var(--col-bg-contrast);
 		border-radius: 8px;
-		background-color: var(--bg);
+		background-color: var(--col-bg);
 
 		padding: 8px;
 
@@ -110,7 +110,7 @@
 			padding: 6px 12px;
 
 			&:hover {
-				background-color: var(--bg-contrast);
+				background-color: var(--col-bg-contrast);
 			}
 		}
 

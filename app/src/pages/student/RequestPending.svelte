@@ -19,7 +19,7 @@
 
 <Page>
 	<main>
-		<Loading type="plane" color="var(--green)" height="unset" />
+		<Loading type="plane" color="var(--col-green)" height="unset" />
 		<p>Waiting for confirmation...</p>
 		<Button on:click={cancel} style="danger">Cancel</Button>
 	</main>

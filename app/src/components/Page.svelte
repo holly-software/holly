@@ -27,6 +27,6 @@
 
 	h1 {
 		font-size: 1.75em;
-		font-weight: 800;
+		font-weight: 700;
 	}
 </style>

@@ -69,7 +69,7 @@
 		align-self: stretch;
 
 		border-radius: 16px;
-		background-color: var(--bg-contrast);
+		background-color: var(--col-bg-contrast);
 		box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.25);
 
 		padding: 24px;
@@ -79,9 +79,10 @@
 		row-gap: 32px;
 
 		&-label {
+			font-family: var(--font-heading);
 			font-size: 0.8em;
-			font-weight: 800;
-			color: var(--font);
+			font-weight: 700;
+			color: var(--col-fg-contrast);
 		}
 	}
 
