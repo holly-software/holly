@@ -79,7 +79,6 @@
 		row-gap: 32px;
 
 		&-label {
-			font-family: var(--font-heading);
 			font-size: 0.8em;
 			font-weight: 700;
 			color: var(--col-fg-contrast);
