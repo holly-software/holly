@@ -79,6 +79,7 @@
 		border: 1px solid var(--bg-contrast);
 		border-radius: 8px;
 		background-color: var(--bg);
+		color: var(--text);
 
 		&:focus,
 		&:hover {

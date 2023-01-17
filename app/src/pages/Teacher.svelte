@@ -141,7 +141,7 @@
 	}
 
 	.info {
-		color: var(--oc-gray-7);
+		color: var(--font-contrast);
 
 		display: flex;
 		flex-direction: row;
