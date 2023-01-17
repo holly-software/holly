@@ -13,7 +13,7 @@
 		]),
 		[]
 	);
-	$: pass = $passes ? $passes[0] : undefined;
+	$: pass = $passes ? $passes[0] : null;
 </script>
 
 {#if pass}
@@ -22,7 +22,7 @@
 	{:else if pass.data.status === "issued"}
 		<ActivePass {pass} />
 	{/if}
-{:else if pass === null}
+{:else if pass === undefined}
 	<RequestPass />
 {:else}
 	<Loading type="circle" />
