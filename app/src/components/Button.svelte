@@ -21,20 +21,20 @@
         cursor: pointer;
 
         &.primary {
-            background: var(--oc-blue-6);
-            color: var(--oc-gray-0);
+            background: var(--green);
+            color: var(--font);
         }
 
         &.danger {
-            background: var(--oc-red-6);
-            color: var(--oc-gray-0);
+            background: var(--red);
+            color: var(--font);
         }
 
 		&.disabled {
-			background: var(--oc-gray-3);
-            color: var(--oc-gray-9);
-
-			border: 1px solid var(--oc-red-5);
+			background: var(--disabled-button);
+            color: var(--font-contrast);
+            
+			// border: 1px solid var(--oc-red-5);
 
             cursor: not-allowed;
 		}

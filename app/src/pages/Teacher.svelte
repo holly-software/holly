@@ -121,8 +121,8 @@
 
 			font-size: 0.85em;
 
-			color: white;
-			background-color: var(--oc-blue-6);
+			color: var(--font);
+			background-color: var(--green);
 			border-radius: 8px;
 		}
 	}
@@ -173,12 +173,12 @@
 
 			&.green {
 				color: white;
-				background-color: var(--oc-green-6);
+				background-color: var(--green);
 			}
 
 			&.red {
 				color: white;
-				background-color: var(--oc-red-6);
+				background-color: var(--red);
 			}
 		}
 	}

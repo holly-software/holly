@@ -1,83 +1,20 @@
 :root {
-	--grey-0: #f3f4f7; // dark mode font, light mode bg, light mode disabled button font
-	--grey-1: #e7e9ef;
-	--grey-2: #dadde7;
-	--grey-3: #ced2df; // light mode disabled button
-	--grey-4: #c1c6d7;
-	--grey-5: #b4bbcf; // light mode bg contrast
-	--grey-6: #a8b0c7; // dark mode low contrast font, dark mode disabled button font
-	--grey-7: #9ba4bf;
-	--grey-8: #8f99b7;
-	--grey-9: #838eaf;
-	--grey-10: #7682a7; // dark mode disabled button
-	--grey-11: #6a77a0; // light mode low contrast font
-	--grey-12: #5f6c95;
-	--grey-13: #586389;
-	--grey-14: #50597c;
-	--grey-15: #485070;
-	--grey-16: #404764; // dark mode bg contrast
-	--grey-17: #383e57;
-	--grey-18: #30354b;
-	--grey-19: #282c3e; // dark mode bg
-	--grey-20: #202332;
-	--grey-21: #181a25;
-	--grey-22: #101119;
-	--grey-23: #08080c; // light mode font
-
-	--green-0: #f0f9f4;
-	--green-1: #e2f3e9;
-	--green-2: #d3eedf;
-	--green-3: #c5e8d4;
-	--green-4: #b6e2c9;
-	--green-5: #a7dcbe;
-	--green-6: #99d6b4;
-	--green-7: #8ad0a9;
-	--green-8: #7ccb9e; // light mode green
-	--green-9: #6dc593;
-	--green-10: #5fbf89; // dark mode green
-	--green-11: #50b97e;
-	--green-12: #46af73;
-	--green-13: #40a06a;
-	--green-14: #3a9260;
-	--green-15: #348357;
-	--green-16: #2f754d;
-	--green-17: #296643;
-	--green-18: #23583a;
-	--green-19: #1d4930;
-	--green-20: #173a26;
-	--green-21: #112c1d;
-	--green-22: #0c1d13;
-	--green-23: #060f0a;
-
-	--red-0: #fbeef0;
-	--red-1: #f8dee0;
-	--red-2: #f4cdd1;
-	--red-3: #f0bcc1;
-	--red-4: #edabb2;
-	--red-5: #e99ba2;
-	--red-6: #e58a93;
-	--red-7: #e27984;
-	--red-8: #de6874; //light mode red
-	--red-9: #da5865;
-	--red-10: #d74755; // dark mode red
-	--red-11: #d33646;
-	--red-12: #c92c3c;
-	--red-13: #b82837;
-	--red-14: #a72532;
-	--red-15: #97212d;
-	--red-16: #861d28;
-	--red-17: #751a23;
-	--red-18: #64161e;
-	--red-19: #541219;
-	--red-20: #430f14;
-	--red-21: #320b0f;
-	--red-22: #21070a;
-	--red-23: #110405;
-
 	font-family: "Noto Sans";
 
-	background-color: white;
-	color: var(--oc-gray-9);
+	background-color: var(--bg);
+	color: var(--font);
+}
+
+:root {
+    --font: #f3f4f7;
+	--font-contrast: #a8b0c7; // dark mode low contrast font, dark mode disabled button font
+	--disabled-button: #7682a7; // dark mode disabled button
+	--bg-contrast: #404764; // dark mode bg contrast
+	--bg: #282c3e; // dark mode bg
+
+	--green: #5fbf89; // dark mode green
+
+	--red: #d74755; // dark mode red
 }
 
 .firebase-emulator-warning {

@@ -42,7 +42,7 @@
 </script>
 
 {#if state === State.Loading}
-	<Loading height="100vh" type="circle" color="var(--oc-blue-6)" />
+	<Loading height="100vh" type="circle" color="var(--green)" />
 {:else if state === State.Student}
 	<Student />
 {:else if state === State.Teacher}
