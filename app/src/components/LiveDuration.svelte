@@ -9,7 +9,17 @@
 
 	function formatDuration(ms: number) {
 		const seconds = ms / 1000;
-		return `${formatTwoDigits(seconds / 60)}:${formatTwoDigits(seconds % 60)}`;
+
+		let formatted = "";
+
+		if (seconds / 60 >= 60) {
+			formatted += `${formatTwoDigits(seconds / 60 / 60)}:`;
+		}
+
+		formatted += `${formatTwoDigits(seconds / 60 % 60)}:`
+		formatted += `${formatTwoDigits(seconds % 60)}`;
+
+		return formatted;
 	}
 
 	let formatted: string = start
