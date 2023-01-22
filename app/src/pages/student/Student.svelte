@@ -22,7 +22,7 @@
 		{#if pass.data.status === "requested"}
 			<RequestPending {pass} />
 		{:else if pass.data.status === "issued"}
-			<ActivePass {pass} />}
+			<ActivePass {pass} />
 		{/if}
 	{:else}
 		<RequestPass />
