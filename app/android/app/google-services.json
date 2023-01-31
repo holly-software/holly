@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "100310942224-9do7a58qm3akhtldb1aeu5talaqvv4kg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "school.holly.app",
+            "certificate_hash": "0628c06a64f3a8dae62907300bbb3d027060b90f"
+          }
+        },
+        {
+          "client_id": "100310942224-sc81n6f2soutjp128ptvgvd52rhb6fse.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "school.holly.app",
+            "certificate_hash": "1f59bcda59ce88150cd36c57b45c9786516a8796"
+          }
+        },
+        {
           "client_id": "100310942224-h957d7lfrcg66h5094grgapbge6pojr0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -31,7 +47,7 @@
               "client_type": 3
             },
             {
-              "client_id": "100310942224-h957d7lfrcg66h5094grgapbge6pojr0.apps.googleusercontent.com",
+              "client_id": "100310942224-h0qo9j6gjdkc0lbd9q1qee8b8u4drm0f.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "school.holly.app"
