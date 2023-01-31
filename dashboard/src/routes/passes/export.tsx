@@ -37,7 +37,7 @@ function ExportPasses() {
 	const [loading, setLoading] = useState(false);
 
 	return (
-		<Container maxWidth="xs" sx={{ padding: 5 }}>
+		<Container maxWidth="sm" sx={{ padding: 5 }}>
 			<Typography component="h1" variant="h4" mb={1}>
 				Export Passes
 			</Typography>
