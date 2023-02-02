@@ -46,7 +46,7 @@ jobs:
       - name: Setup | Install Dependencies
         run: pnpm install
 
-      - name: Build | Vite Build
+      - name: Build | Astro Build
         run: pnpm run build
         working-directory: website
 
