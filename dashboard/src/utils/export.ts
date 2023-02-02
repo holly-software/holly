@@ -60,8 +60,6 @@ export interface SerializationFormat {
 export const CSV: SerializationFormat = {
 	mimeType: "text/csv",
 	serialize(table) {
-		return table.rows
-			.map((row) => row.join(","))
-			.join("\n");
+		return table.rows.map((row) => row.join(",")).join("\n");
 	},
 };

@@ -16,7 +16,7 @@
 			formatted += `${formatTwoDigits(seconds / 60 / 60)}:`;
 		}
 
-		formatted += `${formatTwoDigits(seconds / 60 % 60)}:`
+		formatted += `${formatTwoDigits((seconds / 60) % 60)}:`;
 		formatted += `${formatTwoDigits(seconds % 60)}`;
 
 		return formatted;

@@ -24,7 +24,7 @@ export const createUserDocument = functions.auth
 				admin: false,
 				teacher: user.email.endsWith("@pps.net"),
 				student: user.email.endsWith("@student.pps.net"),
-			}
+			},
 		});
 	});
 
