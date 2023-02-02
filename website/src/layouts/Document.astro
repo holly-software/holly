@@ -1,0 +1,41 @@
+---
+import "../styles/global.scss";
+
+import "@fontsource/lato/latin.css";
+import "@fontsource/playfair-display/latin.css";
+
+import Nav from "../components/Nav.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>{frontmatter.title}</title>
+	</head>
+
+	<body>
+		<Nav />
+
+		<main>
+			<h1>{frontmatter.title}</h1>
+			<slot />
+		</main>
+	</body>
+</html>
+
+<style is:global lang="scss">
+    @use "../styles/type";
+
+	main {
+        margin: 3em auto;
+		max-width: 65ch;
+        
+        @include type.basic;
+        @include type.structural;
+        @include type.links;
+	}
+</style>

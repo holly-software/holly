@@ -1,0 +1,149 @@
+$gutter: 0 !default;
+
+@mixin basic {
+	font-family: var(--font-sans);
+	font-size: 20px;
+
+	line-height: 1.3;
+
+	em {
+		font-style: italic;
+	}
+
+	strong {
+		font-weight: 700;
+	}
+
+	i {
+		font-style: italic;
+	}
+
+	p,
+	ul,
+	ol,
+	figure,
+	math[display="block"],
+	code,
+	pre.astro-code,
+	img {
+		margin-bottom: 1em;
+	}
+
+	blockquote {
+		padding-left: 0.75em;
+		border-left: 1px solid var(--col-green);
+		margin-left: 2em;
+
+		position: relative;
+
+		&::before {
+			content: "“";
+			font-size: 2.5em;
+			font-family: var(--font-serif);
+
+			display: block;
+			position: absolute;
+			top: calc(50% - (0.5em - 0.1em));
+			left: -0.75em;
+		}
+	}
+
+	ul,
+	ol {
+		margin-left: 1em;
+		list-style-position: outside;
+	}
+	ul {
+		list-style-type: circle;
+	}
+	ol {
+		list-style-type: decimal;
+	}
+
+	sup {
+		font-variant-position: super;
+	}
+	sub {
+		font-variant-position: sub;
+	}
+
+	figcaption {
+		text-align: center;
+		font-style: italic;
+		margin-top: 0.5em;
+	}
+
+	img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 100%;
+
+		border-radius: 0.25em;
+	}
+
+	.math {
+		overflow-x: scroll;
+	}
+
+	code {
+		font-family: monospace; // TODO: add code font
+		font-size: 0.85em;
+		white-space: nowrap;
+	}
+	pre.astro-code {
+		padding: 12px;
+		border-radius: 0.25em;
+
+		> code {
+			font-size: 0.75em;
+			white-space: unset;
+		}
+	}
+}
+
+@mixin structural {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 1em (-$gutter);
+        font-family: var(--font-serif);
+		font-weight: 700;
+
+		padding-bottom: 0.25em;
+		border-bottom: 1px solid var(--col-green);
+	}
+
+	h1 {
+		font-size: 2.5rem;
+
+		text-align: center;
+		border-bottom: none;
+	}
+
+	h2 {
+		font-size: 1.35em;
+	}
+
+	h3 {
+		font-size: 1.15em;
+		text-align: right;
+	}
+
+	h4 {
+		font-size: 1em;
+	}
+}
+
+@mixin links {
+	a {
+		text-decoration: dotted underline var(--col-green);
+
+		&:hover {
+			color: var(--col-green);
+		}
+	}
+}

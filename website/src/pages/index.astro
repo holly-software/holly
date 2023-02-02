@@ -1,0 +1,82 @@
+---
+import "../styles/global.scss";
+
+import "@fontsource/lato/latin.css";
+import "@fontsource/playfair-display/latin.css";
+
+import Nav from "../components/Nav.astro";
+---
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Holly — Digital Hall Pass</title>
+	</head>
+
+	<body>
+		<Nav absolute={true} />
+
+		<main>
+			<div>
+				<h1>Digital hall passes, <em>simplified</em>.</h1>
+				<div class="actions">
+					<a href="mailto://contact@holly.school">Contact us &rarr;</a>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
+
+<style lang="scss">
+	@use "../styles/type";
+
+	main {
+		height: 100vh;
+		max-width: 65ch;
+		margin-inline: auto;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		padding: 16px;
+
+		@include type.basic;
+
+		h1 {
+			font-family: var(--font-serif);
+			font-weight: 700;
+			font-size: 64px;
+
+			em {
+				text-decoration: underline;
+			}
+
+			margin: 16px 0;
+		}
+
+		.actions {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 32px;
+
+			a {
+				font-size: 24px;
+
+				color: var(--col-green);
+
+				padding: 12px;
+                border-radius: 8px;
+
+                transition: background 0.2s ease-in-out;
+                &:hover {
+                    background: #5fbf8920;
+                }
+			}
+		}
+	}
+</style>

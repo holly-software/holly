@@ -1,0 +1,81 @@
+name: Website
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "website/**"
+      - "pnpm-lock.yaml"
+      - ".github/workflows/website.yaml"
+
+jobs:
+  build:
+    name: Build Website
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        name: Setup | Install PNPM
+        id: pnpm-install
+        with:
+          version: 7
+
+      - name: Setup | Locate PNPM Store
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup | Cache PNPM Store
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Setup | Install Dependencies
+        run: pnpm install
+
+      - name: Build | Vite Build
+        run: pnpm run build
+        working-directory: website
+
+      - name: Upload | Web
+        uses: actions/upload-artifact@v3
+        with:
+          name: website
+          path: website/dist
+
+  publish:
+    name: Publish to Cloudflare Pages
+
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Setup | Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup | Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: website
+          path: website/dist
+
+      - name: Publish | Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: holly-landing
+          directory: website/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

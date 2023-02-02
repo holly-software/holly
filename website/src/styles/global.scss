@@ -1,0 +1,26 @@
+@use "reset.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--col-bg);
+    color: var(--col-fg);
+}
+
+:root {
+    --font-serif: "Playfair Display", serif;
+    --font-sans: "Lato", sans-serif;
+}
+
+:root {
+	--col-fg: #f3f4f7;
+	--col-fg-contrast: #a8b0c7; // dark mode low contrast font, dark mode disabled button font
+	--col-bg-contrast: #404764; // dark mode bg contrast
+	--col-bg: #282c3e; // dark mode bg
+
+	--col-green: #5fbf89; // dark mode green
+
+	--col-red: #d74755; // dark mode red
+}

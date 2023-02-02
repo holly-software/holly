@@ -1,0 +1,73 @@
+---
+const { absolute } = Astro.props;
+---
+
+<nav class:list={{ absolute }}>
+    <a href="/" class="wordmark">Holly</a>
+
+    <div class="spacer"></div>
+
+    <a href="mailto://contact@holly.school">Contact</a>
+    <a href="/support">Support</a>
+    <a href="https://app.holly.school" class="button open">Open Holly</a>
+</nav>
+
+<style lang="scss">
+    nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+
+        position: sticky;
+        top: 0;
+
+        width: 100vw;
+
+        padding: 14px;
+
+        font-size: 18px;
+
+        .spacer {
+            flex-grow: 1;
+        }
+
+        &.absolute {
+            position: absolute;
+        }
+    }
+
+    nav {
+        background: var(--col-bg);
+        border-bottom: 1px solid var(--col-bg-contrast);
+    }
+
+    a {
+        color: var(--col-fg);
+
+        transition: color 150ms ease-in-out;
+
+        &:hover {
+            color: var(--col-green);
+        }
+    }
+
+    a.button {
+        border: 2px solid var(--col-green);
+        border-radius: 8px;
+
+        padding: 12px;
+    }
+
+    @media (max-width: 600px) {
+        .open {
+            display: none;
+        }
+    }
+
+    .wordmark {
+        font-size: 1.5em;
+        font-family: var(--font-serif);
+        font-weight: bold;
+    }
+</style>
