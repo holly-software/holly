@@ -135,9 +135,9 @@
 		padding: 6px 12px;
 	}
 
-	.name {
-		font-size: 1.15em;
-	}
+	// .name {
+	// 	font-size: 1.15em;
+	// }
 
 	.info {
 		color: var(--col-fg-contrast);
