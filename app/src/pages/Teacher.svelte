@@ -49,7 +49,7 @@
 			<h1>Active Passes</h1>
 			<div class="count">{issued.length}</div>
 		</div>
-		{#each issued as pass}
+		{#each issued as pass (pass.ref.id)}
 			<div class="pass" transition:slide>
 				<div>
 					<div class="holder">{pass.data.holder_name}</div>
@@ -72,7 +72,7 @@
 			<span class="count">{requests.length}</span>
 		</div>
 
-		{#each requests as pass}
+		{#each requests as pass (pass.ref.id)}
 			<div class="pass" transition:slide>
 				<div>
 					<div class="holder">{pass.data.holder_name}</div>
