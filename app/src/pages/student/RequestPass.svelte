@@ -8,7 +8,7 @@
 	import SelectInput, {
 		type Option,
 	} from "../../components/SelectInput.svelte";
-	import { db, user } from "../../firebase";
+	import { db, signInWithGoogle, user } from "../../firebase";
 
 	let teacher: Option<Typesaurus.Id<"users">> | null = null;
 	let reason: Option<string> | null = null;
@@ -42,6 +42,7 @@
 </script>
 
 <Page heading="Request Pass">
+<h2>Signed in as {get(user).displayName}</h2>
 	<form on:submit|preventDefault={submit}>
 		<div class="form-item">
 			<label for="teacher">Teacher</label>
@@ -77,6 +78,10 @@
 			<Button type="submit" disabled={!canSubmit}>Submit</Button>
 		</div>
 	</form>
+
+	<Button on:click={() => signInWithGoogle("select_account")} style="danger">
+		Switch Accounts
+	</Button>
 </Page>
 
 <style lang="scss">
