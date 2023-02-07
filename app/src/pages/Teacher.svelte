@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Icon from "@iconify/svelte";
-	import { db, reactiveQuery, user } from "../firebase";
+	import { db, reactiveQuery, signInWithGoogle, user } from "../firebase";
 	import { get } from "svelte/store";
 	import Page from "../components/Page.svelte";
 	import LiveDuration from "../components/LiveDuration.svelte";
 	import type { Typesaurus } from "typesaurus";
 	import type { Pass } from "@holly/schema";
 	import { slide } from "svelte/transition";
+	import Button from "../components/Button.svelte";
 
 	let passes = reactiveQuery(
 		db.passes.query(($) => [
@@ -43,7 +44,8 @@
 	}
 </script>
 
-<Page>
+<Page heading="Teacher Dashboard">
+	<h2>Signed in as {get(user).displayName}</h2>
 	<main>
 		<div class="heading">
 			<h1>Active Passes</h1>
@@ -92,6 +94,12 @@
 			</div>
 		{/each}
 	</main>
+
+	<div class="spacer" />
+
+	<Button on:click={() => signInWithGoogle("select_account")} style="danger">
+		Switch Accounts
+	</Button>
 </Page>
 
 <style lang="scss">
@@ -180,5 +188,9 @@
 				background-color: var(--col-red);
 			}
 		}
+	}
+
+	.spacer {
+		flex-grow: 1;
 	}
 </style>
