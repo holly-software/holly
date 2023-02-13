@@ -140,7 +140,9 @@ $gutter: 0 !default;
 
 @mixin links {
 	a {
-		text-decoration: dotted underline var(--col-green);
+		text-decoration-line: underline;
+		text-decoration-style: dotted;
+		text-decoration-color: var(--col-green);
 
 		&:hover {
 			color: var(--col-green);
