@@ -7,6 +7,9 @@ pkgs.mkShell {
 
     temurin-jre-bin
     android-studio
+
+    python311
+    poetry
   ];
 
   CAPACITOR_ANDROID_STUDIO_PATH = "${pkgs.android-studio}/bin/android-studio";

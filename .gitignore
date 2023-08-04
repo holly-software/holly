@@ -4,6 +4,7 @@
 
 # build
 node_modules
+__pycache__
 
 # environment
 .direnv
