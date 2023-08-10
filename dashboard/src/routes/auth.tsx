@@ -7,11 +7,9 @@ export function Login() {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const from = location.state?.from?.pathname || "/";
-
 	async function handleLogin() {
 		await signInWithGoogle();
-		navigate(from, { replace: true });
+		navigate("/passes", { replace: true });
 	}
 
 	return (
