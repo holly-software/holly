@@ -82,8 +82,8 @@ function Nav() {
 			<nav aria-label="main data indexes">
 				<List>
 					{/* <NavLink to="/dashboard" name="Dashboard" icon={<DashboardIcon />} /> */}
-					<NavLink to="/people" name="People" icon={<PeopleIcon />} />
 					<NavLink to="/passes" name="Passes" icon={<ReceiptLongIcon />} />
+					<NavLink to="/people" name="People" icon={<PeopleIcon />} />
 				</List>
 			</nav>
 			<Box sx={{ flexGrow: 1 }} />
