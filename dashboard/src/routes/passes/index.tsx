@@ -48,7 +48,7 @@ function Passes() {
 		{
 			field: "requested_at",
 			type: "datetime",
-			headerName: "Requested",
+			headerName: "Time Requested",
 			flex: 2,
 		},
 	];

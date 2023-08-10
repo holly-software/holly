@@ -27,8 +27,8 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "passes",
-				// element: <Passes />,
-				loader: () => redirect("export"),
+				element: <Passes />,
+				// loader: () => redirect("export"),
 			},
 			{
 				path: "passes/export",
