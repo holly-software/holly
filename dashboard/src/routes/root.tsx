@@ -8,12 +8,17 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Link,
+	useTheme,
+	useMediaQuery,
+	SwipeableDrawer,
+	IconButton,
 } from "@mui/material";
 import {
 	Dashboard as DashboardIcon,
 	People as PeopleIcon,
 	ReceiptLong as ReceiptLongIcon,
 	Logout as LogoutIcon,
+	Menu as MenuIcon,
 } from "@mui/icons-material";
 import { Navigate, Outlet, useLoaderData, useLocation } from "react-router-dom";
 import { db, getUser } from "../utils/firebase";
@@ -60,8 +65,12 @@ export async function loader(): Promise<LoaderData> {
 	};
 }
 
-// TODO: make this responsive
+// TODO: make this not shit on mobile
 function Nav() {
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+	const [mobileOpen, setMobileOpen] = useState(false);
+
 	const NavLink: React.FC<{
 		to: string;
 		name: string;
@@ -95,7 +104,39 @@ function Nav() {
 		</Box>
 	);
 
-	return (
+	return isMobile ? (
+		<>
+			<IconButton
+				color="inherit"
+				aria-label="open drawer"
+				edge="start"
+				onClick={() => setMobileOpen(true)}
+				sx={{
+					position: "absolute",
+					top: "4px",
+					left: "16px",
+				}}
+			>
+				<MenuIcon />
+			</IconButton>
+			<SwipeableDrawer
+				variant="temporary"
+				open={mobileOpen}
+				onOpen={() => setMobileOpen(true)}
+				onClose={() => setMobileOpen(false)}
+				sx={{
+					width: drawerWidth,
+					flexShrink: 0,
+					[`& .MuiDrawer-paper`]: {
+						width: drawerWidth,
+						boxSizing: "border-box",
+					},
+				}}
+			>
+				{drawerContent}
+			</SwipeableDrawer>
+		</>
+	) : (
 		<Drawer
 			variant="permanent"
 			sx={{
