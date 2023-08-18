@@ -5,7 +5,7 @@ pkgs.mkShell {
     nodejs-16_x
     nodePackages.pnpm
 
-    temurin-jre-bin
+    temurin-jre-bin-11
     android-studio
   ];
 
