@@ -9,27 +9,16 @@ use_frameworks!
 install! 'cocoapods', :disable_input_output_paths => true
 
 def capacitor_pods
-  pod 'Capacitor', :path => '../../../node_modules/.pnpm/@capacitor+ios@4.6.1_@capacitor+core@4.6.1/node_modules/@capacitor/ios'
-  pod 'CapacitorCordova', :path => '../../../node_modules/.pnpm/@capacitor+ios@4.6.1_@capacitor+core@4.6.1/node_modules/@capacitor/ios'
-  pod 'CapacitorFirebaseAuthentication', :path => '../../../node_modules/.pnpm/@capacitor-firebase+authentication@1.3.0_cwhesv37tz3cf3oibsii5dzqwe/node_modules/@capacitor-firebase/authentication'
+  pod 'Capacitor', :path => '../../../node_modules/@capacitor/ios'
+  pod 'CapacitorCordova', :path => '../../../node_modules/@capacitor/ios'
+
 end
 
 target 'App' do
   capacitor_pods
   # Add your Pods here
-  pod 'CapacitorFirebaseAuthentication/Google', :path => '../../../node_modules/.pnpm/@capacitor-firebase+authentication@1.3.0_cwhesv37tz3cf3oibsii5dzqwe/node_modules/@capacitor-firebase/authentication'
 end
 
 post_install do |installer|
   assertDeploymentTarget(installer)
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      # if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
-      #   target.build_configurations.each do |config|
-      #       # fixme: sign with app developer team id
-      #       config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-      #   end
-      # end
-    end
-  end
 end

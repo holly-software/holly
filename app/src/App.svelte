@@ -1,73 +1,47 @@
 <script lang="ts">
-	import { auth, db, reactiveQuery, signInWithGoogle, user } from "./firebase";
-	import Teacher from "./pages/Teacher.svelte";
-	import Student from "./pages/student/Student.svelte";
-	import Page from "./components/Page.svelte";
-	import Loading from "./components/Loading.svelte";
-	import Button from "./components/Button.svelte";
-	import { onDestroy } from "svelte";
-
-	enum State {
-		Loading,
-		Teacher,
-		Student,
-		NoUser,
-		InvalidUser,
-	}
-	let state = State.Loading;
-
-	$: userDoc = $user && reactiveQuery(db.users.get(db.users.id($user.uid)));
-	$: {
-		if ($user === undefined || $userDoc === null) {
-			state = State.Loading;
-		} else if ($user === null) {
-			state = State.NoUser;
-		} else if ($userDoc.data.roles.teacher) {
-			state = State.Teacher;
-		} else if ($userDoc.data.roles.student) {
-			state = State.Student;
-		} else {
-			state = State.InvalidUser;
-		}
-	}
-
-	// Hack because get queries do not appear to update when the document is first created.
-	// Should only poll while the createUserDocument function is running.
-	const pollUserDocumentInterval = setInterval(() => {
-		if ($user && $userDoc === null) {
-			userDoc = reactiveQuery(db.users.get(db.users.id($user.uid)));
-		}
-	}, 500);
-	onDestroy(() => clearInterval(pollUserDocumentInterval));
+  import svelteLogo from './assets/svelte.svg'
+  import viteLogo from '/vite.svg'
+  import Counter from './lib/Counter.svelte'
 </script>
 
-{#if state === State.Loading}
-	<Loading height="100vh" type="circle" color="var(--col-green)" />
-{:else if state === State.Student}
-	<Student />
-{:else if state === State.Teacher}
-	<Teacher />
-{:else if state === State.NoUser}
-	<Page heading="Not Signed In">
-		<p>You are not signed in with your Google account.</p>
+<main>
+  <div>
+    <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
+      <img src={viteLogo} class="logo" alt="Vite Logo" />
+    </a>
+    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
+      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
+    </a>
+  </div>
+  <h1>Vite + Svelte</h1>
 
-		<Button on:click={() => signInWithGoogle("consent")}>Sign In</Button>
-	</Page>
-{:else if state === State.InvalidUser}
-	<Page heading="Invalid Account">
-		<p>
-			You are not signed in with a PPS account. Please sign in using your
-			@pps.net or @student.pps.net Google account.
-		</p>
+  <div class="card">
+    <Counter />
+  </div>
 
-		<Button on:click={() => signInWithGoogle("select_account")}>
-			Switch Accounts
-		</Button>
-	</Page>
-{/if}
+  <p>
+    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
+  </p>
 
-<style lang="scss">
-	p {
-		margin: 16px 0;
-	}
+  <p class="read-the-docs">
+    Click on the Vite and Svelte logos to learn more
+  </p>
+</main>
+
+<style>
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  .logo.svelte:hover {
+    filter: drop-shadow(0 0 2em #ff3e00aa);
+  }
+  .read-the-docs {
+    color: #888;
+  }
 </style>

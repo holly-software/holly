@@ -5,8 +5,7 @@ on:
   push:
     paths:
       - "app/**"
-      - "schema/**"
-      - "pnpm-lock.yaml"
+      - "bun.lockb"
       - ".github/workflows/app.yaml"
 
 jobs:
@@ -19,36 +18,14 @@ jobs:
       - name: Setup | Checkout
         uses: actions/checkout@v3
 
-      - name: Setup | Install Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - uses: pnpm/action-setup@v2
-        name: Setup | Install PNPM
-        id: pnpm-install
-        with:
-          version: 8
-
-      - name: Setup | Locate PNPM Store
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        name: Setup | Cache PNPM Store
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      - name: Setup | Install Bun
+        uses: oven-sh/setup-bun@v1
 
       - name: Setup | Install Dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Build | Vite Build
-        run: pnpm run build
+        run: bun run build
         working-directory: app
 
       - name: Upload | Web
@@ -78,33 +55,11 @@ jobs:
           java-version: "17"
           cache: "gradle"
 
-      - name: Setup | Install Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - uses: pnpm/action-setup@v2
-        name: Setup | Install PNPM
-        id: pnpm-install
-        with:
-          version: 8
-
-      - name: Setup | Locate PNPM Store
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v3
-        name: Setup | Cache PNPM Store
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      - name: Setup | Install Bun
+        uses: oven-sh/setup-bun@v1
 
       - name: Setup | Install Dependencies
-        run: pnpm install
+        run: bun install
 
       - name: Setup | Download Web Distribution
         uses: actions/download-artifact@v2
@@ -113,7 +68,7 @@ jobs:
           path: app/dist
 
       - name: Build | Capacitor Sync
-        run: npx cap sync android
+        run: bunx cap sync android
         working-directory: app
 
       - name: Build | Assemble APK
