@@ -21,6 +21,7 @@
   "dependencies": {
     "@capacitor/android": "^5.5.0",
     "@capacitor/core": "^5.5.0",
-    "@capacitor/ios": "^5.5.0"
+    "@capacitor/ios": "^5.5.0",
+    "@material/web": "^1.0.0"
   }
 }
