@@ -28,11 +28,11 @@ jobs:
         run: bun run build
         working-directory: dashboard
 
-      - name: Upload | Web
+      - name: Upload | Cloudflare Pages
         uses: actions/upload-artifact@v3
         with:
-          name: dashboard
-          path: dashboard/dist
+          name: dashboard-cloudflare
+          path: dashboard/.svelte-kit/cloudflare
 
   publish:
     name: Publish to Cloudflare Pages
@@ -46,8 +46,8 @@ jobs:
       - name: Setup | Download Artifact
         uses: actions/download-artifact@v2
         with:
-          name: dashboard
-          path: dashboard/dist
+          name: dashboard-cloudflare
+          path: dashboard/.svelte-kit/cloudflare
 
       - name: Publish | Cloudflare Pages
         uses: cloudflare/pages-action@1
@@ -55,5 +55,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: holly-dashboard
-          directory: dashboard/dist
+          directory: dashboard/.svelte-kit/cloudflare
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
