@@ -191,7 +191,7 @@ jobs:
   #           path: app/ios/build/App.xcarchive
 
   publish_web:
-    name: Publish to Cloudflare Pages
+    name: Publish Web App to Cloudflare Pages
 
     runs-on: ubuntu-latest
     needs: [build_web]
